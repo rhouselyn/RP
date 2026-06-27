@@ -1,0 +1,56 @@
+{
+  "skill_name": "rp-writer",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我本科是计算机的,想申英国 PhD,套磁了帝国理工的 Prof. Li,他做联邦学习和隐私保护机器学习。我想写一份 research proposal 给他看,方向大概是联邦学习在医疗数据上的应用,但具体怎么切入还没想好。麻烦帮我写一份完整的 RP 初稿,英文正文,3000 词左右。",
+      "expected_output": "一份面向帝国理工 Prof. Li 的联邦学习医疗数据 RP 初稿,含 Title/Abstract/Intro/LitReview/RQ/Methodology/Timeline/Outcomes/References,英文正文+中文说明,引用真实可核实,有风险预案,体现与导师方向匹配",
+      "expectations": [
+        "产出包含 Title、Abstract、Introduction、Literature Review、Research Questions、Methodology、Timeline、Expected Outcomes、References 九个部分",
+        "Research Questions 是 2-3 个具体的疑问句,而非主题词,且互相有逻辑递进",
+        "Methodology 部分含数据集、baseline、提出方法、评估指标、消融实验、算力说明等 ML 研究具体要素,而非泛泛'用深度学习'",
+        "包含明确的风险与预案(risk + Plan B),预案具体可执行而非'will find alternatives'",
+        "正文为英文,辅以中文说明/注释(双语产出)",
+        "引用标注真实或标 [需核实],无编造的 DOI/作者",
+        "包含与目标导师(联邦学习+隐私保护+医疗)方向匹配的呼应点",
+        "包含分阶段 Timeline 表格或甘特图,且任务间有依赖关系说明",
+        "未出现 'will definitely prove'/'revolutionize' 等过度承诺表述",
+        "Title 含方法+问题+场景,无 'Novel' 自评词"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "我要申香港科技大学材料系 PhD,做钙钛矿太阳能电池的长期稳定性,套磁的导师做缺陷工程和界面修饰。帮我写一份 RP,英文,2500-3000 词。",
+      "expected_output": "一份钙钛矿太阳能电池稳定性 RP,实验型 methodology(材料制备/表征/测试/统计),呼应缺陷工程与界面修饰方向,含伦理声明(无人类/动物受试)",
+      "expectations": [
+        "产出包含完整 RP 结构(Title 到 References)",
+        "Methodology 为实验型模板:含材料与样品制备、表征设备型号/参数、性能测试方法、平行样与重复性、统计分析",
+        "Research Questions 聚焦稳定性机制或界面缺陷,2-3 个具体疑问句",
+        "明确写出无人类/动物受试的伦理声明或相关合规说明",
+        "包含可行性论证(设备/技术/人力/申请人基础四要素)",
+        "包含风险表:每条风险有概率、影响、具体预案",
+        "Literature Review 按主题组织(非流水账),含近 3-5 年文献占比说明",
+        "正文英文 + 中文说明双语",
+        "Timeline 为表格或甘特图,3 年分阶段,含缓冲",
+        "创新点明确归类(优化/迁移/结合/scale/解释),不堆 novel"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "下面是我写的 RP 初稿,帮我看看哪里要改,然后给一版改好的。我想申美国 BME 博士,做可穿戴生理信号监测用于心血管疾病早期预警。导师做生物传感器和信号处理。\n\n[初稿]\nTitle: Wearable Devices for Health\n\nCardiovascular disease is the leading cause of death worldwide. Many people die from it every year. Wearable devices are very important. I think we can use them to detect heart problems early.\n\nIn this research, I will use machine learning to analyze wearable signals. First I will collect data. Then I will train a model. Then I will evaluate it. This will definitely revolutionize cardiovascular care.\n\nThe methodology is: collect data, train model, evaluate. I believe this approach is the best.\n\nReferences:\n[1] Some paper on wearables.\n[2] Another paper on ML.",
+      "expected_output": "先给诊断(对照 checklist 列 top 问题),再给改好的完整 RP,修正宽泛题目/无RQ/流水账方法/过度承诺/编造引用等问题",
+      "expectations": [
+        "先给出诊断,对照 checklist 列出至少 3 个具体问题(如题目过宽、无RQ、methodology是to-do list、过度承诺、引用编造)",
+        "诊断引用初稿原文具体句子,而非泛泛说'不够深入'",
+        "改后 Title 含方法+问题+场景,无'Health'这类过宽词",
+        "改后包含 2-3 个具体 Research Questions(疑问句式)",
+        "改后 Methodology 含数据集/传感器/信号处理方法/评估指标/统计/伦理,非 to-do list",
+        "改后删除 'will definitely revolutionize'/'I believe' 等过度承诺与主观表述",
+        "改后引用为真实或标注 [需核实],删除 [1] Some paper 这类编造",
+        "改后包含风险与预案",
+        "保留与导师方向(生物传感器+信号处理)的匹配呼应",
+        "改后正文英文 + 中文说明双语"
+      ]
+    }
+  ]
+}
