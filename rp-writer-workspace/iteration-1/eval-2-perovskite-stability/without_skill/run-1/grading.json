@@ -1,0 +1,22 @@
+{
+  "expectations": [
+    {"text": "产出包含完整 RP 结构(Title 到 References)", "passed": true, "evidence": "rp.md 含 Title、§1 Abstract、§2 Background、§3 Objectives、§4 Literature Review、§5 Methodology、§6 Expected Outcomes、§7 Timeline、§8 Significance、§9 References。结构完整。"},
+    {"text": "Methodology 为实验型模板:含材料与样品制备、表征设备型号/参数、性能测试方法、平行样与重复性、统计分析", "passed": false, "evidence": "§5 Methodology 含 §5.1 Defect Characterization(DLTS/TAS/KPFM/TOF-SIMS/XPS)、§5.2 Passivation Molecule Design(DFT 筛选)、§5.3 2D/3D Heterostructure、§5.4 Device Fabrication、§5.5 Stability Testing(ISOS-L-2, ≥5 devices per condition)、§5.6 Operando。但缺乏:材料具体纯度/供应商、设备型号(只给方法名未给型号如 Bruker D8)、制备工艺具体参数(温度/时间/气氛)、power analysis 样本量依据。属方法描述但未达实验型模板'可复现'精度,判 fail。"},
+    {"text": "Research Questions 聚焦稳定性机制或界面缺陷,2-3 个具体疑问句", "passed": false, "evidence": "§3 Research Objectives 给出 5 个 objectives(Objective 1-5),均为动作句(Identify/Design/Construct/Achieve/Elucidate),非疑问句式 RQ。无独立 Research Questions 疑问句。判 fail。"},
+    {"text": "明确写出无人类/动物受试的伦理声明或相关合规说明", "passed": false, "evidence": "全文未出现 ethics/IRB/IACUC/伦理声明。材料学虽常无受试者,但技能要求显式声明'no human/animal subjects',baseline 遗漏。判 fail。"},
+    {"text": "包含可行性论证(设备/技术/人力/申请人基础四要素)", "passed": false, "evidence": "§8 Significance 提及'leveraging its characterization infrastructure',但无独立 feasibility 小节,缺技术/人力/申请人基础三要素的系统论证。判 fail。"},
+    {"text": "包含风险表:每条风险有概率、影响、具体预案", "passed": false, "evidence": "全文无风险表(risk table)或风险与预案段落。判 fail。"},
+    {"text": "Literature Review 按主题组织(非流水账),含近 3-5 年文献占比说明", "passed": true, "evidence": "§4 按 4 个 theme 组织(Defects/Passivation/Interface/ISOS Protocols)+ Gap。References 含 Khenkin 2020/Al-Ashouri 2020/Chen 2022/Li 2021 等近年文献。但未显式说明占比,勉强 pass。"},
+    {"text": "正文英文 + 中文说明双语", "passed": false, "evidence": "全文英文,无任何中文说明/注释。baseline 未做双语。"},
+    {"text": "Timeline 为表格或甘特图,3 年分阶段,含缓冲", "passed": false, "evidence": "§7 Timeline 用 Year 1-4 文字描述,非表格/甘特图;且为 4 年(用户问 2500-3000 词未指明年限,但技能默认 3 年);未提缓冲。判 fail。"},
+    {"text": "创新点明确归类(优化/迁移/结合/scale/解释),不堆 novel", "passed": true, "evidence": "未滥用 novel。创新体现在 multifunctional passivation + 2D/3D heterostructure + operando 机制研究的结合,属'结合'类。"}
+  ],
+  "summary": {"passed": 3, "failed": 7, "total": 10, "pass_rate": 0.3},
+  "timing": {"executor_duration_seconds": 42.0, "total_duration_seconds": 42.0},
+  "claims": [
+    {"claim": "8 条引用均为真实", "type": "factual", "verified": true, "evidence": "Yin 2014/Khenkin 2020/Stranks 2015/Wang 2019 等均为真实钙钛矿领域文献。"},
+    {"claim": "T80 > 5000h 目标可行", "type": "quality", "verified": false, "evidence": "目标激进但无风险预案论证其可达性。"}
+  ],
+  "user_notes_summary": {"uncertainties": [], "needs_review": ["无伦理声明、无风险表、无双语、Timeline 非表格、RQ 非疑问句"], "workarounds": []},
+  "eval_feedback": {"suggestions": [], "overall": "baseline 3/10,与 with_skill(10/10)差距显著,证明 skill 在实验型 RP 的伦理/风险/可行性/双语/RQ 形式上有明确增益。"}
+}

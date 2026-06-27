@@ -1,0 +1,17 @@
+{
+  "eval_id": 3,
+  "eval_name": "bme-wearable-revision",
+  "prompt": "下面是我写的 RP 初稿,帮我看看哪里要改,然后给一版改好的。我想申美国 BME 博士,做可穿戴生理信号监测用于心血管疾病早期预警。导师做生物传感器和信号处理。[初稿: Title: Wearable Devices for Health ...]",
+  "assertions": [
+    "先给出诊断,对照 checklist 列出至少 3 个具体问题(如题目过宽、无RQ、methodology是to-do list、过度承诺、引用编造)",
+    "诊断引用初稿原文具体句子,而非泛泛说'不够深入'",
+    "改后 Title 含方法+问题+场景,无'Health'这类过宽词",
+    "改后包含 2-3 个具体 Research Questions(疑问句式)",
+    "改后 Methodology 含数据集/传感器/信号处理方法/评估指标/统计/伦理,非 to-do list",
+    "改后删除 'will definitely revolutionize'/'I believe' 等过度承诺与主观表述",
+    "改后引用为真实或标注 [需核实],删除 [1] Some paper 这类编造",
+    "改后包含风险与预案",
+    "保留与导师方向(生物传感器+信号处理)的匹配呼应",
+    "改后正文英文 + 中文说明双语"
+  ]
+}

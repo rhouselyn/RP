@@ -1,0 +1,22 @@
+{
+  "expectations": [
+    {"text": "先给出诊断,对照 checklist 列出至少 3 个具体问题(如题目过宽、无RQ、methodology是to-do list、过度承诺、引用编造)", "passed": true, "evidence": "第一部分诊断报告列出 8 类问题(Title 过宽、无 RQ、Methodology to-do list、无 Lit Review/背景无证据、无可行性/风险/Timeline、过度承诺、主观立场、编造引用),并标注对应 checklist 项与 tips 编号。远超 3 个。"},
+    {"text": "诊断引用初稿原文具体句子,而非泛泛说'不够深入'", "passed": true, "evidence": "每个问题均引用原文:问题1引 'Title: Wearable Devices for Health';问题2引 'In this research, I will use machine learning...';问题3引 'First I will collect data. Then I will train a model...';问题6引 'This will definitely revolutionize...';问题8引 '[1] Some paper on wearables.'。"},
+    {"text": "改后 Title 含方法+问题+场景,无'Health'这类过宽词", "passed": true, "evidence": "改后 Title: 'Motion-Robust PPG–ECG Sensor Fusion for Early Detection of Paroxysmal Atrial Fibrillation in Wearable Cardiovascular Monitoring'。含方法(PPG-ECG Sensor Fusion)、问题(Paroxysmal AF Early Detection)、场景(Wearable Monitoring)。无 Health 过宽词。"},
+    {"text": "改后包含 2-3 个具体 Research Questions(疑问句式)", "passed": true, "evidence": "§3 给出 RQ1(How can motion artifacts be adaptively suppressed)、RQ2(To what extent does PPG-ECG fusion improve pAF detection)、RQ3(What is the latency-false-alarm trade-off on edge hardware)。3 个疑问句,逻辑递进。"},
+    {"text": "改后 Methodology 含数据集/传感器/信号处理方法/评估指标/统计/伦理,非 to-do list", "passed": true, "evidence": "§4.2 Datasets & Sensors(公开数据集+前瞻队列+PPG/ECG/IMU 传感器)、§4.3 Signal-Processing(LMS/RLS+小波+learned SQI,含'why this over alternatives')、§4.4 Fusion(baselines+proposed+超参搜索)、§4.6 Metrics(sensitivity/specificity/F1/AUROC+DeLong/McNemar)、§4.7 Ethics(IRB+HIPAA+知情同意)。非 to-do list。"},
+    {"text": "改后删除 'will definitely revolutionize'/'I believe' 等过度承诺与主观表述", "passed": true, "evidence": "改后全文用 'aims to''is expected to''may inform''is designed to extend'。诊断报告问题 6/7 明确指出原文过度承诺与主观表述并要求删除。改后无 definitely/revolutionize/I believe。"},
+    {"text": "改后引用为真实或标注 [需核实],删除 [1] Some paper 这类编造", "passed": true, "evidence": "改后 §7 References 全部为 [需核实] 占位 + 检索建议(WHO GBD/PubMed/IEEE TBME/PhysioNet 等),并声明'本稿不编造任何引用'。诊断报告问题 8 明确指出原文 '[1] Some paper' 编造并要求删除。"},
+    {"text": "改后包含风险与预案", "passed": true, "evidence": "§4.9 Risk & Contingency 风险表 6 条,每条含 Likelihood/Impact/Concrete contingency。如'Public dataset lacks synchronized PPG-ECG under motion → Use PPG+accelerometry-only datasets; partner with lab for ECG-paired data'。"},
+    {"text": "保留与导师方向(生物传感器+信号处理)的匹配呼应", "passed": true, "evidence": "诊断报告'与导师方向的匹配'段明确'改稿将以 PPG/ECG 传感器融合与运动伪影信号处理为主线'。改后 Title 中文说明、Abstract、§3 RQ 中文说明、§4.9、§6 均显式呼应导师'生物传感器'(PPG/ECG 硬件)与'信号处理'(自适应去噪)两条脉络。"},
+    {"text": "改后正文英文 + 中文说明双语", "passed": true, "evidence": "改后正文英文,每节以 > 中文说明:... 形式给出中文注释。双语达标。"}
+  ],
+  "summary": {"passed": 10, "failed": 0, "total": 10, "pass_rate": 1.0},
+  "timing": {"executor_duration_seconds": 135.0, "total_duration_seconds": 135.0},
+  "claims": [
+    {"claim": "诊断对照 checklist 逐项核对", "type": "process", "verified": true, "evidence": "诊断报告明确'按技能阶段 C 流程,先对照 references/checklist.md 逐项核对',并标注 checklist A1/B-RQ/B-Methodology 等条目。"},
+    {"claim": "改后无编造引用", "type": "factual", "verified": true, "evidence": "References 全部 [需核实] 占位 + 检索建议,无具体作者/DOI 编造。"}
+  ],
+  "user_notes_summary": {"uncertainties": ["阈值用 <待填> 占位待预实验确定"], "needs_review": [], "workarounds": []},
+  "eval_feedback": {"suggestions": [], "overall": "10/10 全通过。诊断引用原文具体句子、改稿修正全部初稿缺陷、双语+风险+匹配齐全。改稿场景 skill 价值显著。"}
+}

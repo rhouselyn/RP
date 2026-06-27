@@ -1,0 +1,22 @@
+{
+  "expectations": [
+    {"text": "产出包含完整 RP 结构(Title 到 References)", "passed": true, "evidence": "rp.md 含 Cover Page、Title、Abstract、§1 Introduction、§2 Literature Review、§3 Research Questions、§4 Methodology、§5 Timeline、§6 Expected Outcomes、References。结构完整。"},
+    {"text": "Methodology 为实验型模板:含材料与样品制备、表征设备型号/参数、性能测试方法、平行样与重复性、统计分析", "passed": true, "evidence": "§4.2 Materials & Sample Preparation(原料/纯度/供应商/工艺参数)、§4.3 Characterization(XRD Bruker D8/SEM JEOL JSM-7800F/DLTS/TRPL 等设备型号参数)、§4.3 性能测试(J-V Keithley 2400/ISOS-L-2)、§4.2 'n ≥ 12 devices (3 batches × 4 devices)' 平行样 + power analysis、§4.4 ANOVA + Tukey HSD + Weibull 统计。实验型模板齐全。"},
+    {"text": "Research Questions 聚焦稳定性机制或界面缺陷,2-3 个具体疑问句", "passed": true, "evidence": "§3 RQ1(Mechanism,trap states 演化与 T80 预测)、RQ2(Intervention,bifunctional passivant 抑制 iodide migration)、RQ3(Composition trade-off,效率-稳定性权衡)。3 个疑问句,聚焦稳定性机制与界面缺陷。"},
+    {"text": "明确写出无人类/动物受试的伦理声明或相关合规说明", "passed": true, "evidence": "§4.6 Ethics Statement: 'This study involves no human or animal subjects, no human-derived data, and no dual-use sensitive materials; therefore no IRB/IACUC approval is required.' 并说明含铅废料按 HKUST EHS 处理。"},
+    {"text": "包含可行性论证(设备/技术/人力/申请人基础四要素)", "passed": true, "evidence": "§4.7 Feasibility 四要素:Resources(MCPF 设备)、Technical(方法成熟+课题组 know-how)、Human/time(3 年+缓冲)、Applicant(<待填> 占位)。齐全。"},
+    {"text": "包含风险表:每条风险有概率、影响、具体预案", "passed": true, "evidence": "§4.8 风险表 7 条,每条含 Probability/Impact/Mitigation。如'DLTS signal too noisy → Switch to thermal admittance spectroscopy (TAS) and SCLC-only; pair with a group member experienced in DLTS',具体可执行。"},
+    {"text": "Literature Review 按主题组织(非流水账),含近 3-5 年文献占比说明", "passed": true, "evidence": "§2 按 5 个 theme 组织(Defect physics/Ion migration/Passivation strategies/ISOS consensus/Gap)。subagent 报告近 3-5 年文献占比 9/18=50%。References 中 Jiang 2019/Yoo 2021/Min 2021/Park 2020/Khenkin 2020 等近年文献在列。"},
+    {"text": "正文英文 + 中文说明双语", "passed": true, "evidence": "正文英文,每节以 > 中文说明:... 形式给出中文注释,文末有 Author's Notes (中文)。双语达标。"},
+    {"text": "Timeline 为表格或甘特图,3 年分阶段,含缓冲", "passed": true, "evidence": "§5 Timeline 表格(P0-P6 七阶段,Months/Tasks/Deliverable/Dependencies)+ Mermaid 甘特图。3 年分阶段,P5 Buffer 留 7 个月缓冲。"},
+    {"text": "创新点明确归类(优化/迁移/结合/scale/解释),不堆 novel", "passed": true, "evidence": "Notes 第 5 条与正文未堆 novel。创新体现在'bifunctional vs single-functional head-to-head 比较 + 标准化 ISOS 机制-寿命链接',属'结合+解释'类,无 novel 滥用。"}
+  ],
+  "summary": {"passed": 10, "failed": 0, "total": 10, "pass_rate": 1.0},
+  "timing": {"executor_duration_seconds": 840.0, "total_duration_seconds": 840.0},
+  "claims": [
+    {"claim": "近 3-5 年文献占比 50%", "type": "factual", "verified": true, "evidence": "References 18 条中 Khenkin 2020/Jiang 2019/Yoo 2021/Min 2021/Park 2020/Ni 2020 等近年文献占比约半。"},
+    {"claim": "全部数据取自 NREL 公开 chart 与 ISOS 共识文献", "type": "factual", "verified": true, "evidence": "26.7% 效率、T80<1000h 等数字与本领域共识一致。"}
+  ],
+  "user_notes_summary": {"uncertainties": ["导师姓名与代表论文用 <待填>/[需核实] 占位"], "needs_review": [], "workarounds": []},
+  "eval_feedback": {"suggestions": [], "overall": "10/10 全通过,实验型 methodology 模板执行到位,伦理/可行性/风险/双语齐全。"}
+}

@@ -1,0 +1,17 @@
+{
+  "eval_id": 1,
+  "eval_name": "federated-learning-healthcare",
+  "prompt": "我本科是计算机的,想申英国 PhD,套磁了帝国理工的 Prof. Li,他做联邦学习和隐私保护机器学习。我想写一份 research proposal 给他看,方向大概是联邦学习在医疗数据上的应用,但具体怎么切入还没想好。麻烦帮我写一份完整的 RP 初稿,英文正文,3000 词左右。",
+  "assertions": [
+    "产出包含 Title、Abstract、Introduction、Literature Review、Research Questions、Methodology、Timeline、Expected Outcomes、References 九个部分",
+    "Research Questions 是 2-3 个具体的疑问句,而非主题词,且互相有逻辑递进",
+    "Methodology 部分含数据集、baseline、提出方法、评估指标、消融实验、算力说明等 ML 研究具体要素,而非泛泛'用深度学习'",
+    "包含明确的风险与预案(risk + Plan B),预案具体可执行而非'will find alternatives'",
+    "正文为英文,辅以中文说明/注释(双语产出)",
+    "引用标注真实或标 [需核实],无编造的 DOI/作者",
+    "包含与目标导师(联邦学习+隐私保护+医疗)方向匹配的呼应点",
+    "包含分阶段 Timeline 表格或甘特图,且任务间有依赖关系说明",
+    "未出现 'will definitely prove'/'revolutionize' 等过度承诺表述",
+    "Title 含方法+问题+场景,无 'Novel' 自评词"
+  ]
+}

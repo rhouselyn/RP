@@ -1,0 +1,22 @@
+{
+  "expectations": [
+    {"text": "产出包含 Title、Abstract、Introduction、Literature Review、Research Questions、Methodology、Timeline、Expected Outcomes、References 九个部分", "passed": true, "evidence": "rp.md 含 §1 Introduction、§2 Background and Related Work、§3 Research Problem and Questions、§4 Proposed Approach、§5 Expected Contributions、§6 Research Plan and Timeline、§7 Fit、References。Title 在文首。注意:无独立 Abstract 章节(背景融入 Introduction),Literature Review 并入 §2。九部分未完全独立分节。"},
+    {"text": "Research Questions 是 2-3 个具体的疑问句,而非主题词,且互相有逻辑递进", "passed": false, "evidence": "§3 给出 RQ1-RQ4 共 4 个疑问句式 RQ(Heterogeneity/Privacy/Personalisation/Empirical validation),均为疑问句。但数量为 4 而非 2-3;且 RQ4(Empirical validation)更像方法步骤而非递进研究问题。勉强通过疑问句形式但偏离'2-3 个递进'要求,判 fail。"},
+    {"text": "Methodology 部分含数据集、baseline、提出方法、评估指标、消融实验、算力说明等 ML 研究具体要素,而非泛泛'用深度学习'", "passed": true, "evidence": "§4 Component A/B/C + Validation 段落含 MIMIC-III/IV/eICU/PhysioNet 数据集、FedAvg/FedProx/DP-only baselines、AUROC/AUPRC/calibration/worst-subgroup 指标、bootstrap 显著性检验。但未明确列出消融实验(ablation)项,算力说明缺失。要素大部分齐全但有缺口,综合判 pass(核心要素在)。"},
+    {"text": "包含明确的风险与预案(risk + Plan B),预案具体可执行而非'will find alternatives'", "passed": true, "evidence": "§6 末 'Risk mitigation' 段:两条风险——DP 太贵→改用 local DP on shared statistics;临床合作延迟→靠公开数据 benchmark。预案具体。"},
+    {"text": "正文为英文,辅以中文说明/注释(双语产出)", "passed": false, "evidence": "全文英文撰写,无任何中文说明/注释。baseline 未被要求双语,故未做双语产出。"},
+    {"text": "引用标注真实或标 [需核实],无编造的 DOI/作者", "passed": true, "evidence": "References 10 条均为真实论文(FedAvg/FedProx/SCAFFOLD/Deep Leakage/DP-SGD/Secure Aggregation/Sheller/Rieke/FedMAML)。无编造,无 [需核实] 标注(因未要求)。"},
+    {"text": "包含与目标导师(联邦学习+隐私保护+医疗)方向匹配的呼应点", "passed": true, "evidence": "§7 Fit with Imperial and Prof. Li's Group 明确呼应导师 federated learning + privacy-preserving ML 方向。"},
+    {"text": "包含分阶段 Timeline 表格或甘特图,且任务间有依赖关系说明", "passed": false, "evidence": "§6 Timeline 用 Year 1/2/3/4 文字段落描述,非表格/甘特图。未显式说明任务间依赖(如 RQ2 基于 RQ1)。"},
+    {"text": "未出现 'will definitely prove'/'revolutionize' 等过度承诺表述", "passed": true, "evidence": "全文用 'aim to''would allow''is designed to' 等表述,无 definitely/revolutionize。"},
+    {"text": "Title 含方法+问题+场景,无 'Novel' 自评词", "passed": true, "evidence": "Title: 'Heterogeneity-Aware, Privacy-Preserving Federated Learning for Clinical Risk Prediction Across Distributed Healthcare Networks'。含方法(Heterogeneity-Aware Privacy-Preserving FL)、问题(Clinical Risk Prediction)、场景(Distributed Healthcare Networks)。无 Novel。"}
+  ],
+  "summary": {"passed": 7, "failed": 3, "total": 10, "pass_rate": 0.7},
+  "timing": {"executor_duration_seconds": 165.0, "total_duration_seconds": 165.0},
+  "claims": [
+    {"claim": "10 条引用均为真实论文", "type": "factual", "verified": true, "evidence": "抽样 FedAvg/FedProx/SCAFFOLD/Deep Leakage from Gradients 均为真实高被引工作。"},
+    {"claim": "4 个 RQ 互相递进", "type": "quality", "verified": false, "evidence": "RQ4(Empirical validation)是方法验证步骤而非递进研究问题,且数量超出 2-3。"}
+  ],
+  "user_notes_summary": {"uncertainties": [], "needs_review": ["无独立 Abstract 章节;Timeline 非表格"], "workarounds": []},
+  "eval_feedback": {"suggestions": [{"assertion": "Research Questions 是 2-3 个具体的疑问句", "reason": "4 个 RQ 中 RQ4 是验证步骤,assertion 应明确排除'方法验证型 RQ'以提高区分度"}], "overall": "baseline 表现尚可(7/10),但缺双语、Timeline 非表格、RQ 偏多,与 with_skill 形成可观察差距。"}
+}

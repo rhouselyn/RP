@@ -28,6 +28,17 @@
 - [ ] 引用近 3-5 年文献占比 ≥ 50%
 - [ ] 无编造引用(拿不准的标 `[需核实]`)
 
+## C-CS. 计算机方向专项(CS RP 必查)
+- [ ] RQ 是疑问句,非"用 X 做 Y"的方法陈述
+- [ ] baseline ≥ 2-3 个,且为近 1-2 年 SOTA,说明为何选
+- [ ] 含消融实验(ablation),逐组件证明贡献
+- [ ] 算力写明(GPU 型号/数量/训练时长)+ 开源计划
+- [ ] 数据集注明许可与划分,明确无数据泄漏(按 subject/site 划分)
+- [ ] 评估指标匹配任务(不平衡用 F1/AUROC;生成用 BLEU/ROUGE+人工;RL 用 return+sample efficiency)
+- [ ] 风险预案含"方向被抢发"和"算力不足"两条
+- [ ] 多 seed 报均值±std(RL/高方差任务 ≥5 seed)
+- [ ] 涉人数据(用户日志/众包/人类评估)有 IRB 说明;LLM 有害性有 red-team 协议
+
 ## D. 语言与表达
 - [ ] 客观立场,少"I believe/think",多证据推导
 - [ ] 无过度承诺("will definitely prove/revolutionize")

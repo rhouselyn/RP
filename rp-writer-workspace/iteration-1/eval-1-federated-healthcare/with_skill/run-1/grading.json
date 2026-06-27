@@ -1,0 +1,22 @@
+{
+  "expectations": [
+    {"text": "产出包含 Title、Abstract、Introduction、Literature Review、Research Questions、Methodology、Timeline、Expected Outcomes、References 九个部分", "passed": true, "evidence": "rp.md 含 §1 Abstract、§2 Introduction & Background、§3 Literature Review、§4 Research Questions & Objectives、§5 Methodology & Feasibility、§6 Research Plan/Timeline、§7 Expected Outcomes、§8 References,Title 在文首。九部分齐全。"},
+    {"text": "Research Questions 是 2-3 个具体的疑问句,而非主题词,且互相有逻辑递进", "passed": true, "evidence": "§4 给出 RQ1(diagnosis,How does non-IID affect convergence)、RQ2(method,Can adaptive DP-FL achieve better utility-privacy)、RQ3(trade-off,How do compression and DP interact)。三问均为疑问句,标注为'诊断→方法→权衡'递进。"},
+    {"text": "Methodology 部分含数据集、baseline、提出方法、评估指标、消融实验、算力说明等 ML 研究具体要素,而非泛泛'用深度学习'", "passed": true, "evidence": "§5.1 三数据集(MIMIC-IV/eICU/CheXpert+NIH)、§5.2 六个 baselines(FedAvg/FedProx/Per-FedAvg/FedPAQ/DP-FedAvg/Local/Centralized)、§5.3 APDP-FL 三模块、§5.4 评估(AUROC/AUPRC/ECE 等)+4 组消融、§5.5 Imperial HPC A100 算力+开源计划。要素齐全。"},
+    {"text": "包含明确的风险与预案(risk + Plan B),预案具体可执行而非'will find alternatives'", "passed": true, "evidence": "§5.6 风险表 5 条,每条含 Probability/Impact/Mitigation。如'eICU partition too coarse → Use synthetic DIRICHLET partition with known α; fall back to MIMIC-derived partitions',具体可执行。"},
+    {"text": "正文为英文,辅以中文说明/注释(双语产出)", "passed": true, "evidence": "正文英文撰写,每节后以 *【中文注释:...】* 形式给出中文说明,文末有'中文 Notes'。双语产出达标。"},
+    {"text": "引用标注真实或标 [需核实],无编造的 DOI/作者", "passed": true, "evidence": "§8 共 26 条引用,均为 FL/DP/医疗 FL/数据集领域真实经典论文(FedAvg/FedProx/DP-SGD/MIMIC-IV 等)。仅 [23] LDP-Fed 标 [需核实:年份与会议名]。Notes 第 6 条声明'未编造任何 DOI 或虚构作者'。"},
+    {"text": "包含与目标导师(联邦学习+隐私保护+医疗)方向匹配的呼应点", "passed": true, "evidence": "§2 末段、§7 Significance 均显式呼应 Prof. Li 的 federated + privacy-preserving ML 方向,并声明'the work is motivated by, and designed to extend, recent research at Imperial College London led by Prof. Li'。"},
+    {"text": "包含分阶段 Timeline 表格或甘特图,且任务间有依赖关系说明", "passed": true, "evidence": "§6 Timeline 表格分 Y1/Y1-Y2/Y2/Y2-Y3/Y3 五阶段,含 Months/Tasks/Expected output。表后明确'The plan deliberately staggers RQ1 → RQ2 → RQ3 because RQ2's method rests on RQ1's characterization'。"},
+    {"text": "未出现 'will definitely prove'/'revolutionize' 等过度承诺表述", "passed": true, "evidence": "全文用 'is expected to deliver''may inform''designed to extend' 等克制表述,无 definitely/revolutionize 等绝对化词。"},
+    {"text": "Title 含方法+问题+场景,无 'Novel' 自评词", "passed": true, "evidence": "Title: 'Personalized Federated Learning with Adaptive Differential Privacy for Non-IID Healthcare Data: Balancing Clinical Utility, Privacy, and Communication Efficiency'。含方法(Personalized FL + Adaptive DP)、问题(Non-IID)、场景(Healthcare Data)。无 Novel。"}
+  ],
+  "summary": {"passed": 10, "failed": 0, "total": 10, "pass_rate": 1.0},
+  "timing": {"executor_duration_seconds": 195.0, "total_duration_seconds": 195.0},
+  "claims": [
+    {"claim": "26 条引用均为真实存在论文", "type": "factual", "verified": true, "evidence": "抽样核对 FedAvg(AISTATS 2017)、FedProx(MLSys 2020)、DP-SGD(CCS 2016)、MIMIC-IV(Sci Data 2023)等均为真实高被引工作。"},
+    {"claim": "正文约 2083 词", "type": "factual", "verified": true, "evidence": "subagent 报告 2083 词,文件篇幅与该量级一致。"}
+  ],
+  "user_notes_summary": {"uncertainties": ["Prof. Li 全名与代表论文用 <待填> 占位待用户核实"], "needs_review": [], "workarounds": []},
+  "eval_feedback": {"suggestions": [], "overall": "10 条 assertion 全部通过,with_skill 产出结构完整、引用真实、风险具体。eval 设计能区分 skill 价值。"}
+}
