@@ -1,0 +1,640 @@
+{
+  "metadata": {
+    "skill_name": "rp-writer",
+    "skill_path": "/workspace/rp-writer",
+    "executor_model": "<model-name>",
+    "analyzer_model": "<model-name>",
+    "timestamp": "2026-06-27T10:40:21Z",
+    "evals_run": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "runs_per_configuration": 3
+  },
+  "runs": [
+    {
+      "eval_id": 4,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 10,
+        "failed": 0,
+        "total": 10,
+        "time_seconds": 270.0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "\u4ea7\u51fa\u542b\u5b8c\u6574RP\u7ed3\u6784(Title/Abstract/Intro/LitReview/RQ/Methodology/Timeline/Outcomes/References)",
+          "passed": true,
+          "evidence": "rp.md \u542b Cover Page/Title/Abstract/Introduction/Literature Review/RQ/Methodology(8\u5b50\u8282)/Timeline/Expected Outcomes/References/\u4e2d\u6587 Notes\u3002\u7ed3\u6784\u5b8c\u6574\u3002"
+        },
+        {
+          "text": "Research Questions\u662f2-3\u4e2a\u7591\u95ee\u53e5(\u975e'\u7528X\u505aY'\u7684\u65b9\u6cd5\u9648\u8ff0),\u4e14\u4e92\u76f8\u903b\u8f91\u9012\u8fdb",
+          "passed": true,
+          "evidence": "3 \u4e2a RQ \u7591\u95ee\u53e5:RQ1(diagnosis,How does preference-data composition affect)\u3001RQ2(method,Can sample-efficient selection criteria reduce)\u3001RQ3(scaling,How do selection criteria transfer)\u3002\u9012\u8fdb:\u8bca\u65ad\u2192\u65b9\u6cd5\u2192\u6cdb\u5316\u3002"
+        },
+        {
+          "text": "\u63cf\u8ff0\u7684\u662f\u7814\u7a76\u65b9\u5411\u800c\u975e\u7aef\u5230\u7aef\u89e3\u51b3\u65b9\u6848\u2014\u2014\u8bfb\u5b8cproblem setting\u65e0\u6cd5\u731c\u51fa\u5168\u90e8\u6280\u672f\u7ec6\u8282,\u65b9\u6cd5\u90e8\u5206\u7559\u6709\u5f00\u653e\u6311\u6218",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a:RQ2 \u660e\u786e\u4e0d\u9884\u8bbe\u5355\u4e00\u9009\u62e9\u7b97\u6cd5,\u5217\u51fa influence-based/diversity-aware/uncertainty-based \u4e09\u5019\u9009,'\u9009\u54ea\u4e2a\u672c\u8eab\u662f\u7814\u7a76\u4ea7\u51fa'\u3002\u65b9\u6cd5\u90e8\u5206\u70b9\u5230\u4e3a\u4f55\u53ef\u884c+\u5173\u952e\u6311\u6218,\u672a\u628a PhD \u4e09\u5e74\u5b9e\u73b0\u5199\u6b7b\u3002\u7b26\u5408\u539f\u52197\u3002"
+        },
+        {
+          "text": "\u6838\u5fc3\u65b9\u6cd5\u7528open weights\u6a21\u578b(Llama/Mistral/Qwen\u7b49),\u800c\u975e\u95ed\u6e90API(GPT-4/Claude)\u4f5c\u4e3b\u63a8\u7406\u5f15\u64ce",
+          "passed": true,
+          "evidence": "\u62bd\u67e5\u786e\u8ba4:\u00a75.5 'Open weights + \u53ef\u590d\u73b0: \u5168\u90e8\u6838\u5fc3\u5b9e\u9a8c\u7528 Llama-3-8B / Qwen2.5 / Mistral;\u95ed\u6e90 API \u4ec5\u4f5c\u8bc4\u4f30\u4fa7 LLM judge'\u3002"
+        },
+        {
+          "text": "Methodology\u542bbaseline(\u22652-3\u4e2a\u8fd11-2\u5e74SOTA\u5982DPO/PPO/SLIC)\u3001\u6d88\u878d\u5b9e\u9a8c\u3001\u7b97\u529b\u8bf4\u660e\u3001model version/seed",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a:baseline \u542b DPO/PPO/SLiC/SimPO;\u6d88\u878d\u9010\u7ec4\u4ef6;\u7b97\u529b 4\u00d7A100 80GB,13B \u7528 QLoRA;\u7cbe\u786e HF model ID + commit hash \u8ba1\u5212,\u22653 seed,QLoRA \u975e\u786e\u5b9a\u6027\u8bf4\u660e\u3002"
+        },
+        {
+          "text": "\u56de\u7b54\u4e86'so what'\u2014\u2014\u4e0d\u6b62\u5237\u699c,\u8bb2\u6e05insight/root cause/\u4e3a\u4ec0\u4e48\u91cd\u8981",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a:\u5207\u5165 sample-efficient preference alignment \u7684 data-side bottleneck,\u4ea7\u51fa reusable artifacts(curated subsets/selection criteria/efficiency curves)\u53ef seed follow-up\u3002Fit \u6bb5\u660e\u786e data-side \u4e0e lab method-side \u4e92\u8865\u3002"
+        },
+        {
+          "text": "\u5305\u542b\u98ce\u9669\u4e0e\u9884\u6848,\u4e14\u542b'\u65b9\u5411\u88ab\u62a2\u53d1(arXiv\u540c\u9898)'\u548c'\u7b97\u529b\u4e0d\u8db3'\u4e24\u6761CS\u9ad8\u9891\u98ce\u9669",
+          "passed": true,
+          "evidence": "\u62bd\u67e5\u786e\u8ba4\u98ce\u9669\u8868:'Direction scooped (arXiv same-topic) | Med | High | Monthly arXiv monitoring; explicit differentiation...; pre-registered fallback RQ'\u3002subagent \u62a5\u544a\u542b\u7b97\u529b\u4e0d\u8db3\u98ce\u9669\u3002\u4e24\u6761\u5747\u5728\u3002"
+        },
+        {
+          "text": "\u8bda\u5b9e\u8bc4\u4f30\u7b97\u529b\u73b0\u5b9e(\u51e0\u5f20A100),\u672a\u627f\u8bfa\u4ece\u5934\u9884\u8bad\u7ec3LLM\u7b49\u8fc7\u5ea6\u91ce\u5fc3\u65b9\u6848",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a:\u6309 4\u00d7A100 80GB \u89c4\u5212,13B \u7528 QLoRA,'\u663e\u5f0f\u62d2\u7edd\u9884\u8bad\u7ec3/70B \u5168\u53c2'\u3002\u7b26\u5408\u539f\u52199\u3002"
+        },
+        {
+          "text": "\u6b63\u6587\u82f1\u6587+\u4e2d\u6587\u8bf4\u660e\u53cc\u8bed\u4ea7\u51fa",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a\u542b\u4e2d\u6587 Notes;\u62bd\u67e5\u786e\u8ba4 \u00a75.5 \u4e2d\u6587\u8bf4\u660e\u3002\u53cc\u8bed\u8fbe\u6807\u3002"
+        },
+        {
+          "text": "\u5f15\u7528\u771f\u5b9e\u6216\u6807[\u9700\u6838\u5b9e],\u65e0\u7f16\u9020DOI/\u4f5c\u8005",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a:6 \u5904\u4e0d\u786e\u5b9a\u5f15\u7528(SimPO/RewardBench/UltraFeedback venue \u7b49)\u6807 [\u9700\u6838\u5b9e],'\u672a\u7f16\u9020\u4efb\u4f55\u5bfc\u5e08\u59d3\u540d/\u8bba\u6587/arXiv ID'\u3002"
+        }
+      ],
+      "notes": [
+        "\u5bfc\u5e08\u5177\u4f53\u8bba\u6587/\u59d3\u540d\u7528 <\u5f85\u586b> \u5360\u4f4d",
+        "6 \u5904 [\u9700\u6838\u5b9e] \u6587\u732e venue"
+      ]
+    },
+    {
+      "eval_id": 5,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 10,
+        "failed": 0,
+        "total": 10,
+        "time_seconds": 270.0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "\u4ea7\u51fa\u542b\u5b8c\u6574RP\u7ed3\u6784",
+          "passed": true,
+          "evidence": "rp.md \u542b Cover Page/Title/Abstract/\u00a71 Introduction/\u00a72 LitReview/\u00a73 RQ/\u00a74 Methodology/\u00a75 Timeline/\u00a76 Expected Outcomes/References\u3002\u7ed3\u6784\u5b8c\u6574\u3002"
+        },
+        {
+          "text": "RQ\u662f2-3\u4e2a\u7591\u95ee\u53e5\u805a\u7126sparse-view/few-shot\u4e0b3DGS\u5177\u4f53\u95ee\u9898(\u51e0\u4f55\u6b67\u4e49/floaters/\u672a\u89c1\u533a\u57df)",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a:3 RQ \u7591\u95ee\u53e5(\u8bca\u65ad\u2192\u6b63\u5219\u5316 frontier\u2192\u751f\u6210\u4e00\u81f4\u6027),\u805a\u7126 sparse-view \u4e0b floater\u3001prior \u529b\u5ea6\u3001\u751f\u6210\u5148\u9a8c\u4e0e 3D \u4e00\u81f4\u6027 trade-off\u3002"
+        },
+        {
+          "text": "Methodology\u542b\u6570\u636e\u96c6(LLFF/DTU/BlendedMVS/Replica)\u3001baseline\u22652-3\u8fd1SOTA(3DGS/Mip-NeRF360/FSGS/DNGaussian)\u3001\u6307\u6807(PSNR/SSIM/LPIPS)\u3001\u6d88\u878d",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a:5 \u4e2a\u8fd1 SOTA baseline(3DGS/Mip-NeRF360/FSGS/DNGaussian/pixelSplat+GS-LRM)\u3001\u56db\u7c7b\u6d88\u878d\u3001PSNR/SSIM/LPIPS\u3002\u6570\u636e\u96c6\u8986\u76d6 LLFF/DTU/BlendedMVS\u3002"
+        },
+        {
+          "text": "\u7b97\u529b\u8bf4\u660e(GPU\u578b\u53f7\u6570\u91cf)+\u4ee3\u7801\u4e0echeckpoint\u5f00\u6e90\u8ba1\u5212",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a:per-scene \u5355\u5361 24GB \u53ef\u8dd1;feed-forward baseline \u7528\u5b98\u65b9 checkpoint \u5fae\u8c03;\u603b\u9884\u7b97 \u22642000 GPU-hours;Zenodo DOI + W&B provenance\u3002"
+        },
+        {
+          "text": "\u56de\u7b54so what\u2014\u2014\u4e0d\u6b62PSNR\u63d0\u5347,\u8bb2\u6e05\u51e0\u4f55\u7406\u89e3/\u6cdb\u5316/\u5b9e\u9645\u5e94\u7528insight",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a:\u6838\u5fc3\u8d21\u732e\u662f mechanistic understanding(\u54ea\u4e9b Gaussian \u53c2\u6570\u5bfc\u81f4 floater\u3001prior \u529b\u5ea6 frontier\u3001\u751f\u6210\u5148\u9a8c\u4e0e 3D \u4e00\u81f4\u6027 trade-off),'\u660e\u786e\u5199 not a PSNR increment,\u8d1f\u7ed3\u679c\u4ea6\u4f5c\u8d21\u732e'\u3002\u7b26\u5408\u539f\u52198\u3002"
+        },
+        {
+          "text": "\u542b\u98ce\u9669\u4e0e\u9884\u6848(\u542b\u65b9\u5411\u88ab\u62a2\u53d1/\u6570\u636e\u96c6\u8bb8\u53ef)",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a:\u98ce\u9669\u542b'\u65b9\u5411\u88ab\u62a2\u53d1/\u7b97\u529b\u4e0d\u8db3/\u6570\u636e\u96c6\u8bb8\u53ef'\u3002"
+        },
+        {
+          "text": "\u6b63\u6587\u82f1\u6587+\u4e2d\u6587\u8bf4\u660e\u53cc\u8bed",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a\u542b\u4e2d\u6587\u8bf4\u660e;\u53cc\u8bed\u4ea7\u51fa\u3002"
+        },
+        {
+          "text": "\u5f15\u7528\u771f\u5b9e\u6216[\u9700\u6838\u5b9e]",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a:6-10 \u6761\u62ff\u4e0d\u51c6\u6587\u732e\u5143\u6570\u636e\u6807 [\u9700\u6838\u5b9e],'\u672a\u7f16\u9020\u4efb\u4f55\u5f15\u7528\u6216\u5bfc\u5e08\u65b9\u5411'\u3002"
+        },
+        {
+          "text": "\u63cf\u8ff0\u7814\u7a76\u65b9\u5411\u800c\u975e\u7aef\u5230\u7aef\u65b9\u6848",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a:Methodology \u53ea\u70b9\u5230'\u4e3a\u4f55\u53ef\u884c+\u6311\u6218',\u5177\u4f53 diffusion/loss \u7559\u4f5c\u5f85\u7b54\u5f00\u653e\u95ee\u9898,\u800c\u975e\u7aef\u5230\u7aef\u65b9\u6848\u3002\u7b26\u5408\u539f\u52197\u3002"
+        },
+        {
+          "text": "Timeline\u5206\u9636\u6bb5\u542b\u7f13\u51b2,\u4efb\u52a1\u6709\u4f9d\u8d56",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a:Timeline \u5206\u9636\u6bb5\u542b\u7f13\u51b2\u3002"
+        }
+      ],
+      "notes": [
+        "7 \u5904 <\u5f85\u586b> \u5360\u4f4d",
+        "6-10 \u6761 [\u9700\u6838\u5b9e] \u6587\u732e"
+      ]
+    },
+    {
+      "eval_id": 6,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 10,
+        "failed": 0,
+        "total": 10,
+        "time_seconds": 330.0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "\u4ea7\u51fa\u542b\u5b8c\u6574RP\u7ed3\u6784",
+          "passed": true,
+          "evidence": "rp.md \u542b Title/Abstract/Introduction/Literature Review/RQ/Methodology/Timeline/Expected Outcomes/References\u3002\u7ed3\u6784\u5b8c\u6574\u3002"
+        },
+        {
+          "text": "RQ\u662f2-3\u4e2a\u7591\u95ee\u53e5\u805a\u7126\u957f\u89c6\u9891\u5177\u4f53\u6311\u6218(long-temporal reasoning/token\u7206\u70b8/\u65f6\u5e8f\u5b9a\u4f4d)",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a:3 RQ \u9012\u8fdb\u2014\u2014RQ1 \u8bca\u65ad\u957f\u89c6\u9891\u65f6\u5e8f\u63a8\u7406\u5931\u8d25\u673a\u5236(capacity/retrieval/representation \u5206\u89e3)\u3001RQ2 \u663e\u5f0f\u65f6\u5e8f\u8868\u5f81\u80fd\u5426\u4f18\u4e8e\u5747\u5300\u538b\u7f29\u3001RQ3 agent \u4e3b\u52a8\u68c0\u7d22/grounding \u80fd\u5426\u91cd\u6784\u4e0a\u9650\u3002\u805a\u7126\u957f\u89c6\u9891\u6311\u6218\u3002"
+        },
+        {
+          "text": "Methodology\u542b\u89c6\u9891\u6570\u636e\u96c6(EgoSchema/MVBench/Video-MME/LongVideoBench)\u3001baseline\u22652-3\u8fd1SOTA(VideoLLaMA/LLaVA-Video/VideoMind)\u3001\u6307\u6807\u3001\u6d88\u878d",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a:baseline \u22653(\u542b VideoMind-style agent)\u3001\u89c6\u9891\u6570\u636e\u96c6\u3001\u6d88\u878d\u3002"
+        },
+        {
+          "text": "\u7b97\u529b+\u53ef\u590d\u73b0(open weights/model version/seed)",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a:\u4e0d\u9884\u8bad\u7ec3,\u4ee5 Qwen2-VL/LLaVA-Video/LongVA \u5f00\u6e90 7B \u6743\u91cd+LoRA \u5fae\u8c03,2B \u5c0f\u6a21\u578b\u505a\u673a\u5236\u5206\u6790;open weights + model ID+commit hash + GitHub/Zenodo DOI + W&B;\u591a seed mean\u00b1std\u3002"
+        },
+        {
+          "text": "\u56de\u7b54so what\u2014\u2014\u8bb2\u6e05\u957f\u89c6\u9891\u7406\u89e3insight\u800c\u975e\u5355\u7eaf\u5237Video-MME",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a:\u91cd\u6846'compress more tokens'\u4e3a'compress/encode/retrieve',insight \u4f18\u5148\u4e8e\u5237 Video-MME\u3002\u7b26\u5408\u539f\u52198\u3002"
+        },
+        {
+          "text": "\u98ce\u9669\u542b\u65b9\u5411\u88ab\u62a2\u53d1+\u7b97\u529b\u4e0d\u8db3+\u957f\u89c6\u9891\u6807\u6ce8\u6210\u672c",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a:\u98ce\u9669\u542b\u65b9\u5411\u88ab\u62a2\u53d1\u3001\u7b97\u529b\u4e0d\u8db3\u3001\u957f\u89c6\u9891\u6807\u6ce8\u6210\u672c\u3001\u590d\u73b0\u5931\u8d25\u3001benchmark \u9971\u548c\u3001\u6743\u91cd\u6f02\u79fb,\u5747\u6709\u5177\u4f53 Plan B\u3002\u4e09\u6761\u5747\u5728\u3002"
+        },
+        {
+          "text": "\u53cc\u8bed",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a\u542b\u4e2d\u6587\u8bf4\u660e\u3002\u53cc\u8bed\u8fbe\u6807\u3002"
+        },
+        {
+          "text": "\u5f15\u7528\u771f\u5b9e\u6216[\u9700\u6838\u5b9e]",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a:\u5f15\u7528\u6807 [\u9700\u6838\u5b9e] \u5360\u4f4d,\u672a\u7f16\u9020\u3002"
+        },
+        {
+          "text": "\u63cf\u8ff0\u7814\u7a76\u65b9\u5411\u800c\u975e\u7aef\u5230\u7aef\u65b9\u6848",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a:\u65b9\u6cd5\u4f5c\u4e3a'\u7814\u7a76\u65b9\u5411'\u800c\u975e\u7aef\u5230\u7aef\u65b9\u6848,\u4fdd\u7559\u5f00\u653e\u95ee\u9898\u3002\u7b26\u5408\u539f\u52197\u3002"
+        },
+        {
+          "text": "\u4e0e\u5bfc\u5e08(video-language agent)\u65b9\u5411\u660e\u786e\u5339\u914d",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a:RQ3 \u76f4\u63a5\u5bf9\u63a5\u5bfc\u5e08 video-language agent \u65b9\u5411\u3002"
+        }
+      ],
+      "notes": [
+        "\u5bfc\u5e08 2-3 \u7bc7\u4ee3\u8868\u4f5c\u7528 <\u5f85\u586b> \u5360\u4f4d",
+        "[\u9700\u6838\u5b9e] \u6587\u732e"
+      ]
+    },
+    {
+      "eval_id": 7,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 11,
+        "failed": 0,
+        "total": 11,
+        "time_seconds": 1020.0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "\u4ea7\u51fa\u542b\u5b8c\u6574RP\u7ed3\u6784",
+          "passed": true,
+          "evidence": "rp.md \u542b Cover Page/Title/Abstract/Introduction/Literature Review/RQ/Methodology/Timeline/Expected Outcomes/References\u3002\u7ed3\u6784\u5b8c\u6574\u3002"
+        },
+        {
+          "text": "RQ\u662f2-3\u4e2a\u7591\u95ee\u53e5\u805a\u7126world model for manipulation\u5177\u4f53\u95ee\u9898(\u7269\u7406\u4e00\u81f4\u6027/\u957fhorizon\u89c4\u5212/sim-to-real gap)",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a:3 RQ \u7591\u95ee\u53e5\u805a\u7126\u7a33\u5b9a\u6027\u673a\u5236/\u7269\u7406\u4e00\u81f4\u6027\u3001\u957f horizon\u3001sim-to-real\u3002"
+        },
+        {
+          "text": "\u8ba8\u8bba\u4e86generative world model vs latent world model\u7684\u6743\u8861(\u800c\u975e\u76f2\u76ee\u9009\u4e00\u79cd),\u6709justification",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a:\u672a\u66ff\u7528\u6237\u9884\u5148\u9009\u8fb9,\u628a'\u8303\u5f0f\u9009\u62e9'\u672c\u8eab\u4f5c\u4e3a RQ1 \u7684\u7814\u7a76\u5bf9\u8c61,hybrid \u65b9\u6848\u5728 RQ2 \u660e\u793a\u4e3a'hypothesis to test, not a final design'\u3002\u7b26\u5408\u539f\u52197\u3002"
+        },
+        {
+          "text": "Methodology\u542b\u4eff\u771f\u5668(Isaac Gym/Habitat/Genesis/MuJoCo)\u3001\u6570\u636e\u96c6(AgiBot-World/RLBench/DROID)\u3001baseline\u3001\u6307\u6807(success rate/sample efficiency/return)\u3001\u6d88\u878d",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a:\u4eff\u771f\u5668\u3001\u6570\u636e\u96c6\u3001baseline\u22653 \u8fd1 SOTA(DreamerV3/RoboScape/GE)\u3001\u6307\u6807\u3001\u6d88\u878d\u3002"
+        },
+        {
+          "text": "\u542bsim-to-real\u7b56\u7565(domain randomization/\u7cfb\u7edf\u8bc6\u522b)\u6216\u771f\u673a\u5b9e\u9a8c\u5b89\u5168\u534f\u8bae",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a:\u00a74.6 \u540c\u65f6\u6bd4\u8f83 domain randomization \u4e0e system identification \u4e24\u79cd\u7b56\u7565,\u5e76\u505a paradigm\u00d7strategy \u4ea4\u4e92\u5206\u6790;\u771f\u673a\u5b89\u5168\u542b controller \u7ea7\u9650\u901f/\u9650\u77e9\u3001geofencing\u3001\u6025\u505c\u3001\u6e10\u8fdb\u81ea\u6cbb\u9636\u68af\u3001IRB \u58f0\u660e\u3002"
+        },
+        {
+          "text": "\u7b97\u529b+\u53ef\u590d\u73b0",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a:\u00a74.5 \u7ed9\u51fa 24-72 GPU-h(latent)\u30014-8 A100-days(generative)\u3001\u603b 2k-4k A100-h,\u5e76\u660e\u786e generative \u7b97\u529b\u662f binding cost+\u7ed9\u964d\u7ea7\u8def\u5f84;\u53ef\u590d\u73b0\u8981\u7d20\u5728\u3002"
+        },
+        {
+          "text": "\u56de\u7b54so what\u2014\u2014\u8bb2\u6e05world model\u7ed9manipulation\u5e26\u6765\u7684insight",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a:\u00a76 \u8bbe\u72ec\u7acb So what \u6bb5,\u5f3a\u8c03\u4ea7\u51fa\u662f'\u7406\u89e3/\u9009\u62e9\u6307\u5357'\u800c\u975e\u5237\u699c\u6570\u5b57,\u70b9\u660e\u5bf9\u5bfc\u5e08 lab \u7684\u5b9e\u9645\u6307\u5bfc\u610f\u4e49\u3002\u7b26\u5408\u539f\u52198\u3002"
+        },
+        {
+          "text": "\u98ce\u9669\u542b\u65b9\u5411\u88ab\u62a2\u53d1+sim-to-real gap+\u771f\u673a\u5b89\u5168",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a:\u98ce\u9669\u8868 6 \u6761\u542b'\u65b9\u5411\u88ab\u62a2\u53d1/sim-to-real gap/generative \u7b97\u529b/\u771f\u673a\u5b89\u5168/\u590d\u73b0\u5931\u8d25/hallucination',\u6bcf\u6761\u6709\u5177\u4f53 Plan B\u3002\u4e09\u6761\u5747\u5728\u3002"
+        },
+        {
+          "text": "\u53cc\u8bed",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a\u542b\u4e2d\u6587\u6279\u6ce8\u3002\u53cc\u8bed\u8fbe\u6807\u3002"
+        },
+        {
+          "text": "\u5f15\u7528\u771f\u5b9e\u6216[\u9700\u6838\u5b9e]",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a:23 \u6761\u5f15\u7528\u4e2d\u786e\u8ba4\u771f\u5b9e\u8005\u6807 \u2713,\u4e0d\u786e\u5b9a\u7684(TWM/Genesis/AgiBot-World/RLBench \u5e74\u4efd/Agarwal)\u5747\u6807 [\u9700\u6838\u5b9e],'\u96f6\u7f16\u9020'\u3002"
+        },
+        {
+          "text": "\u63cf\u8ff0\u7814\u7a76\u65b9\u5411\u800c\u975e\u7aef\u5230\u7aef\u65b9\u6848",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a:hybrid \u65b9\u6848\u5728 RQ2 \u660e\u793a\u4e3a'hypothesis to test, not a final design'\u2014\u2014\u63cf\u8ff0\u7814\u7a76\u65b9\u5411\u800c\u975e\u7aef\u5230\u7aef\u65b9\u6848\u3002\u7b26\u5408\u539f\u52197\u3002"
+        }
+      ],
+      "notes": [
+        "7 \u5904 <\u5f85\u586b> \u5360\u4f4d(\u9662\u6821/\u5bfc\u5e08/\u673a\u68b0\u81c2/\u7b97\u529b/\u80cc\u666f)",
+        "[\u9700\u6838\u5b9e] \u6587\u732e"
+      ]
+    },
+    {
+      "eval_id": 4,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.6,
+        "passed": 6,
+        "failed": 4,
+        "total": 10,
+        "time_seconds": 80.0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "\u4ea7\u51fa\u542b\u5b8c\u6574RP\u7ed3\u6784",
+          "passed": true,
+          "evidence": "rp.md \u542b Abstract/Intro/Related Work/RQ1-RQ4/\u65b9\u6cd5/\u5b9e\u9a8c\u8bbe\u8ba1/\u8d21\u732e/4\u5e74\u65f6\u95f4\u8868/\u53ef\u884c\u6027\u4e0e\u98ce\u9669/\u4e0e\u5bfc\u5e08\u8854\u63a5/\u53c2\u8003\u6587\u732e\u3002\u7ed3\u6784\u5b8c\u6574\u3002"
+        },
+        {
+          "text": "Research Questions\u662f2-3\u4e2a\u7591\u95ee\u53e5,\u903b\u8f91\u9012\u8fdb",
+          "passed": false,
+          "evidence": "\u00a7RQ \u7ed9\u51fa RQ1-RQ4 \u5171 4 \u4e2a(\u8d85\u51fa 2-3)\u3002subagent \u62a5\u544a RQ \u4e3a\u7591\u95ee\u53e5\u5f62\u5f0f,\u4f46\u6570\u91cf\u4e3a 4\u3002\u6ce8:\u672c\u6b21\u5224 fail \u4e3b\u8981\u56e0\u6570\u91cf\u8d85 2-3,\u4e14 RQ4 \u504f scaling \u6027\u8d28\u3002"
+        },
+        {
+          "text": "\u63cf\u8ff0\u7814\u7a76\u65b9\u5411\u800c\u975e\u7aef\u5230\u7aef\u65b9\u6848",
+          "passed": false,
+          "evidence": "subagent \u62a5\u544a:baseline \u63d0\u51fa SE-DPO \u7edf\u4e00\u6846\u67b6\u542b\u4e09\u7ec4\u4ef6(Active Preference Acquisition/Curriculum-Guided DPO/Controlled Synthetic Preference Augmentation),\u5e76\u628a\u4e09\u7ec4\u4ef6\u5b9e\u73b0\u7ec6\u8282\u94fa\u5f00\u3002\u8fd9\u662f\u7aef\u5230\u7aef\u65b9\u6848\u63cf\u8ff0,\u800c\u975e\u7559\u5f00\u653e\u6311\u6218\u7684\u7814\u7a76\u65b9\u5411\u3002\u8fdd\u80cc\u539f\u52197\u3002"
+        },
+        {
+          "text": "\u6838\u5fc3\u65b9\u6cd5\u7528open weights\u800c\u975e\u95ed\u6e90API",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a:\u5b9e\u9a8c\u9650\u5b9a 7B-13B(Llama-3-8B/Mistral-7B/Qwen2.5-7B),\u5c11\u91cf 70B \u7528 LoRA\u3002open weights\u3002"
+        },
+        {
+          "text": "Methodology\u542bbaseline\u22652-3\u8fd1SOTA/\u6d88\u878d/\u7b97\u529b/model version/seed",
+          "passed": false,
+          "evidence": "subagent \u62a5\u544a\u542b baseline \u4e0e\u6d88\u878d,\u4f46\u672a\u660e\u786e\u63d0\u53ca model version/commit hash\u3001seed \u6570\u91cf\u3001\u53ef\u590d\u73b0\u6027\u786c\u5173\u7ec6\u8282(\u91cf\u5316\u975e\u786e\u5b9a\u6027\u3001W&B provenance)\u3002\u7b97\u529b\u6709(\u51e0\u5f20 A100)\u4f46 model version/seed \u7f3a\u5931\u3002\u7efc\u5408\u5224 fail(model version/seed \u7ef4\u5ea6\u4e0d\u8fbe\u6807)\u3002"
+        },
+        {
+          "text": "\u56de\u7b54so what",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a:\u5207\u5165 data-side \u9ad8\u6548\u5316,\u8bbe\u8ba1\u4e0e\u5bfc\u5e08 RLHF/DPO \u8854\u63a5\u70b9(online DPO \u6269\u5c55\u3001reward hacking \u8054\u5408\u5206\u6790)\u3002\u6709 so what \u610f\u8bc6\u3002"
+        },
+        {
+          "text": "\u98ce\u9669\u542b\u65b9\u5411\u88ab\u62a2\u53d1+\u7b97\u529b\u4e0d\u8db3",
+          "passed": false,
+          "evidence": "subagent \u62a5\u544a'\u53ef\u884c\u6027\u4e0e\u98ce\u9669'\u6bb5\u5b58\u5728,\u4f46\u672a\u660e\u786e\u63d0\u53ca'\u65b9\u5411\u88ab\u62a2\u53d1(arXiv \u540c\u9898)'\u4e0e'\u7b97\u529b\u4e0d\u8db3'\u8fd9\u4e24\u6761 CS \u9ad8\u9891\u4e13\u9879\u98ce\u9669\u3002\u5224 fail\u3002"
+        },
+        {
+          "text": "\u8bda\u5b9e\u8bc4\u4f30\u7b97\u529b\u65e0\u8fc7\u5ea6\u91ce\u5fc3",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a:\u5b9e\u9a8c\u9650\u5b9a 7B-13B,70B \u7528 LoRA,\u5339\u914d\u7528\u6237\u7b97\u529b\u3002\u65e0\u4ece\u5934\u9884\u8bad\u7ec3\u3002"
+        },
+        {
+          "text": "\u53cc\u8bed\u4ea7\u51fa",
+          "passed": false,
+          "evidence": "subagent \u62a5\u544a\u672a\u63d0\u53ca\u4efb\u4f55\u4e2d\u6587\u8bf4\u660e/\u6ce8\u91ca,\u4ea7\u51fa\u4e3a\u7eaf\u82f1\u6587\u3002baseline \u672a\u505a\u53cc\u8bed\u3002"
+        },
+        {
+          "text": "\u5f15\u7528\u771f\u5b9e\u6216[\u9700\u6838\u5b9e]",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a\u5f15\u7528 RLHF/DPO \u7b49\u771f\u5b9e\u5de5\u4f5c,\u672a\u63d0\u7f16\u9020\u3002"
+        }
+      ],
+      "notes": [
+        "\u65e0\u53cc\u8bed\u3001\u65e0\u65b9\u5411\u88ab\u62a2\u53d1\u98ce\u9669\u3001model version/seed \u7f3a\u5931"
+      ]
+    },
+    {
+      "eval_id": 5,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.4,
+        "passed": 4,
+        "failed": 6,
+        "total": 10,
+        "time_seconds": 30.0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "\u4ea7\u51fa\u542b\u5b8c\u6574RP\u7ed3\u6784",
+          "passed": true,
+          "evidence": "rp.md \u542b Introduction/Background/Problem Statement/Research Objectives/Proposed Approach/Expected Contributions/Research Plan/Broader Impact/Conclusion\u3002\u7ed3\u6784\u5b8c\u6574(\u65e0\u72ec\u7acb Abstract \u7ae0\u8282\u4f46\u6709 Introduction \u542b\u6458\u8981\u6027\u8d28)\u3002"
+        },
+        {
+          "text": "RQ\u662f2-3\u4e2a\u7591\u95ee\u53e5\u805a\u7126sparse-view 3DGS\u5177\u4f53\u95ee\u9898",
+          "passed": false,
+          "evidence": "subagent \u62a5\u544a:\u7ed9\u51fa 4 \u4e2a Research Objectives(O1-O4),\u5747\u4e3a\u52a8\u4f5c\u53e5\u800c\u975e\u7591\u95ee\u53e5\u5f0f RQ\u3002\u65e0\u72ec\u7acb Research Questions \u7591\u95ee\u53e5\u3002\u5224 fail\u3002"
+        },
+        {
+          "text": "Methodology\u542b\u6570\u636e\u96c6/baseline\u22652-3\u8fd1SOTA/\u6307\u6807PSNR-SSIM-LPIPS/\u6d88\u878d",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a:\u6280\u672f\u7ec6\u8282\u542b densification\u3001SDS\u3001\u591a\u89c6\u89d2\u4e00\u81f4\u6269\u6563\u3001Bayesian \u4e3b\u52a8\u91c7\u96c6;Proposed Approach 4 \u90e8\u5206\u3002\u4f46\u672a\u660e\u786e\u5217 baseline\u22652-3 \u8fd1 SOTA \u4e0e\u6d88\u878d\u3002\u7efc\u5408\u5224 pass(\u6280\u672f\u8981\u7d20\u5728,\u4f46 baseline/\u6d88\u878d\u4e0d\u660e\u786e,\u8fb9\u7f18 pass)\u3002\u6ce8:\u6b64\u6761\u8fb9\u7f18,\u5982\u5b9e\u6807 pass \u4f46 evidence \u5f31\u3002"
+        },
+        {
+          "text": "\u7b97\u529b+\u4ee3\u7801\u5f00\u6e90",
+          "passed": false,
+          "evidence": "subagent \u62a5\u544a\u672a\u63d0\u53ca GPU \u578b\u53f7\u6570\u91cf\u3001\u8bad\u7ec3\u65f6\u957f\u3001\u4ee3\u7801/checkpoint \u5f00\u6e90\u8ba1\u5212\u3001model version/seed\u3002\u5224 fail\u3002"
+        },
+        {
+          "text": "\u56de\u7b54so what\u4e0d\u6b62PSNR\u63d0\u5347",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a:Broader Impact \u6bb5\u542b\u5e94\u7528\u4ef7\u503c\u3001\u5e7b\u89c9\u98ce\u9669\u3001\u4e0d\u786e\u5b9a\u6027\u4f5c\u5b89\u5168\u7f51\u3002\u6709 so what \u610f\u8bc6\u3002"
+        },
+        {
+          "text": "\u98ce\u9669\u542b\u65b9\u5411\u88ab\u62a2\u53d1+\u6570\u636e\u96c6\u8bb8\u53ef",
+          "passed": false,
+          "evidence": "subagent \u62a5\u544a\u672a\u63d0\u53ca'\u65b9\u5411\u88ab\u62a2\u53d1'\u4e0e'\u6570\u636e\u96c6\u8bb8\u53ef'\u98ce\u9669\u3002Broader Impact \u63d0\u5e7b\u89c9\u98ce\u9669\u4f46\u975e\u6280\u80fd\u8981\u6c42\u7684 CS \u4e13\u9879\u98ce\u9669\u3002\u5224 fail\u3002"
+        },
+        {
+          "text": "\u53cc\u8bed",
+          "passed": false,
+          "evidence": "grep \u786e\u8ba4:eval-5 baseline \u65e0\u4efb\u4f55'\u4e2d\u6587/\u8bf4\u660e/\u6ce8\u91ca/\u5f85\u586b/\u9700\u6838\u5b9e'\u5339\u914d\u3002\u7eaf\u82f1\u6587,\u65e0\u53cc\u8bed\u3002\u5224 fail\u3002"
+        },
+        {
+          "text": "\u5f15\u7528\u771f\u5b9e\u6216[\u9700\u6838\u5b9e]",
+          "passed": false,
+          "evidence": "grep \u786e\u8ba4\u65e0'\u9700\u6838\u5b9e'\u6807\u6ce8\u3002subagent \u62a5\u544a\u672a\u63d0\u5f15\u7528\u5904\u7406\u3002\u65e0\u6cd5\u8bc1\u5b9e\u5f15\u7528\u771f\u5b9e\u6027,\u4e14\u672a\u7528 [\u9700\u6838\u5b9e] \u5360\u4f4d,\u5b58\u5728\u7f16\u9020\u98ce\u9669\u3002\u5224 fail(\u4fdd\u5b88)\u3002"
+        },
+        {
+          "text": "\u63cf\u8ff0\u7814\u7a76\u65b9\u5411\u800c\u975e\u7aef\u5230\u7aef\u65b9\u6848",
+          "passed": false,
+          "evidence": "subagent \u62a5\u544a:Proposed Approach \u542b\u51e0\u4f55\u5148\u9a8c+\u7f6e\u4fe1\u5ea6\u52a0\u6743\u3001inpainting-conditioned \u6269\u6563\u6b63\u5219\u4e0e consistency-preserving SDS\u3001per-Gaussian \u53d8\u5206\u4e0d\u786e\u5b9a\u6027+\u4e3b\u52a8\u89c6\u89d2\u9009\u62e9\u2014\u2014\u7aef\u5230\u7aef\u65b9\u6848\u63cf\u8ff0,\u975e\u7559\u5f00\u653e\u6311\u6218\u7684\u7814\u7a76\u65b9\u5411\u3002\u8fdd\u80cc\u539f\u52197\u3002\u5224 fail\u3002"
+        },
+        {
+          "text": "Timeline\u542b\u7f13\u51b2\u6709\u4f9d\u8d56",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a:4 \u5e74\u65f6\u95f4\u8868\u542b\u9876\u4f1a\u6295\u7a3f\u4e0e\u5b9e\u4e60\u5b89\u6392\u3002\u52c9\u5f3a pass(\u7f13\u51b2/\u4f9d\u8d56\u672a\u660e\u786e,\u4f46\u65f6\u95f4\u8868\u5728)\u3002"
+        }
+      ],
+      "notes": [
+        "\u65e0\u53cc\u8bed\u3001\u65e0RQ\u7591\u95ee\u53e5\u3001\u7aef\u5230\u7aef\u65b9\u6848\u3001\u65e0\u7b97\u529b/\u5f00\u6e90\u3001\u5f15\u7528\u672a\u6807[\u9700\u6838\u5b9e]"
+      ]
+    },
+    {
+      "eval_id": 6,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.3,
+        "passed": 3,
+        "failed": 7,
+        "total": 10,
+        "time_seconds": 150.0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "\u4ea7\u51fa\u542b\u5b8c\u6574RP\u7ed3\u6784",
+          "passed": true,
+          "evidence": "rp.md \u542b Abstract/Introduction & Motivation/Background & Related Work/Research Questions & Objectives/Proposed Approach(\u4e09 Work Package)/Evaluation Plan/Timeline/Expected Contributions/Why This Programme and Supervisor\u3002\u7ed3\u6784\u5b8c\u6574\u3002"
+        },
+        {
+          "text": "RQ\u662f2-3\u4e2a\u7591\u95ee\u53e5\u805a\u7126\u957f\u89c6\u9891\u5177\u4f53\u6311\u6218",
+          "passed": false,
+          "evidence": "subagent \u62a5\u544a:\u4e09\u5757\u5de5\u4f5c\u5305\u5bf9\u5e94 RQ1/RQ2/RQ3,\u4f46\u672a\u660e\u786e\u8bf4\u660e RQ \u4e3a\u7591\u95ee\u53e5\u5f0f(\u62a5\u544a\u7528'\u5bf9\u5e94 RQ1 \u9ad8\u6548\u957f\u4e0a\u4e0b\u6587'\u7b49\u8868\u8ff0,\u4f3c objectives \u800c\u975e\u7591\u95ee\u53e5)\u3002\u65e0\u6cd5\u8bc1\u5b9e\u7591\u95ee\u53e5\u5f62\u5f0f\u3002\u5224 fail(\u4fdd\u5b88)\u3002"
+        },
+        {
+          "text": "Methodology\u542b\u89c6\u9891\u6570\u636e\u96c6/baseline\u22652-3\u8fd1SOTA/\u6307\u6807/\u6d88\u878d",
+          "passed": false,
+          "evidence": "subagent \u62a5\u544a:\u4e09 Work Package \u63cf\u8ff0\u65b9\u6cd5,\u4f46\u672a\u660e\u786e\u5217\u89c6\u9891\u6570\u636e\u96c6\u540d\u3001baseline\u22652-3 \u8fd1 SOTA\u3001\u8bc4\u4f30\u6307\u6807\u3001\u6d88\u878d\u3002'Evaluation Plan'\u5b58\u5728\u4f46\u7ec6\u8282\u4e0d\u660e\u3002\u5224 fail\u3002"
+        },
+        {
+          "text": "\u7b97\u529b+\u53ef\u590d\u73b0(open weights/model version/seed)",
+          "passed": false,
+          "evidence": "subagent \u62a5\u544a\u672a\u63d0\u53ca\u7b97\u529b\u3001open weights\u3001model version\u3001seed\u3001\u5f00\u6e90\u8ba1\u5212\u3002\u5224 fail\u3002"
+        },
+        {
+          "text": "\u56de\u7b54so what\u975e\u5355\u7eaf\u5237Video-MME",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a:\u4e09\u8f74\u5c55\u5f00(\u9ad8\u6548\u957f\u4e0a\u4e0b\u6587+\u7ec4\u5408\u5f0f\u65f6\u5e8f\u63a8\u7406+\u89c6\u9891-\u8bed\u8a00\u667a\u80fd\u4f53),\u6709\u7814\u7a76\u53d6\u5411\u3002\u52c9\u5f3a pass\u3002"
+        },
+        {
+          "text": "\u98ce\u9669\u542b\u65b9\u5411\u88ab\u62a2\u53d1+\u7b97\u529b\u4e0d\u8db3+\u957f\u89c6\u9891\u6807\u6ce8\u6210\u672c",
+          "passed": false,
+          "evidence": "subagent \u62a5\u544a\u672a\u63d0\u53ca\u98ce\u9669\u8868\u6216\u4e0a\u8ff0\u4e09\u6761 CS \u4e13\u9879\u98ce\u9669\u3002\u5224 fail\u3002"
+        },
+        {
+          "text": "\u53cc\u8bed",
+          "passed": false,
+          "evidence": "grep \u786e\u8ba4:eval-6 baseline \u65e0\u4efb\u4f55'\u4e2d\u6587/\u8bf4\u660e/\u6ce8\u91ca/\u5f85\u586b/\u9700\u6838\u5b9e'\u5339\u914d\u3002\u7eaf\u82f1\u6587\u3002\u5224 fail\u3002"
+        },
+        {
+          "text": "\u5f15\u7528\u771f\u5b9e\u6216[\u9700\u6838\u5b9e]",
+          "passed": false,
+          "evidence": "subagent \u62a5\u544a:\u5f15\u7528\u4ee5'key works include'\u5f62\u5f0f\u7ed9\u51fa,'\u907f\u514d\u7f16\u9020\u5177\u4f53\u6761\u76ee\u7ec6\u8282'\u2014\u2014\u5373\u672a\u7ed9\u5177\u4f53\u5f15\u7528,\u65e0\u6cd5\u6838\u5b9e\u3002\u5224 fail(\u65e0\u5177\u4f53\u5f15\u7528\u4ea6\u4e0d\u8fbe\u6807)\u3002"
+        },
+        {
+          "text": "\u63cf\u8ff0\u7814\u7a76\u65b9\u5411\u800c\u975e\u7aef\u5230\u7aef\u65b9\u6848",
+          "passed": false,
+          "evidence": "subagent \u62a5\u544a:\u4e09 Work Package(WP1 \u5206\u5c42\u4e8b\u4ef6\u4e2d\u5fc3\u5316\u89c6\u9891\u8bb0\u5fc6\u3001WP2 \u7ec4\u5408\u5f0f\u65f6\u5e8f\u63a8\u7406\u6a21\u5757+\u8bca\u65ad benchmark\u3001WP3 \u667a\u80fd\u4f53\u5faa\u73af+\u5de5\u5177\u8c03\u7528)\u2014\u2014\u7aef\u5230\u7aef\u65b9\u6848\u63cf\u8ff0\u3002\u5224 fail\u3002"
+        },
+        {
+          "text": "\u4e0e\u5bfc\u5e08video-language agent\u65b9\u5411\u660e\u786e\u5339\u914d",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a:WP3 \u667a\u80fd\u4f53\u5faa\u73af+\u5de5\u5177\u8c03\u7528\u5bf9\u63a5\u5bfc\u5e08 video-language agent\u3002\u5339\u914d\u3002"
+        }
+      ],
+      "notes": [
+        "\u65e0\u53cc\u8bed\u3001\u65e0\u98ce\u9669\u3001\u65e0\u53ef\u590d\u73b0\u3001\u65e0\u5177\u4f53\u5f15\u7528\u3001\u7aef\u5230\u7aef\u65b9\u6848"
+      ]
+    },
+    {
+      "eval_id": 7,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.545,
+        "passed": 6,
+        "failed": 5,
+        "total": 11,
+        "time_seconds": 95.0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "\u4ea7\u51fa\u542b\u5b8c\u6574RP\u7ed3\u6784",
+          "passed": true,
+          "evidence": "rp.md \u542b Introduction/Background/3 Research Questions/Related Work/Proposed Approach(5\u5c0f\u8282)/4\u5e74Timeline/Expected Contributions/Fit with Group/\u53c2\u8003\u6587\u732e\u3002\u7ed3\u6784\u5b8c\u6574\u3002"
+        },
+        {
+          "text": "RQ\u662f2-3\u4e2a\u7591\u95ee\u53e5\u805a\u7126world model for manipulation\u5177\u4f53\u95ee\u9898",
+          "passed": true,
+          "evidence": "\u62bd\u67e5\u786e\u8ba4:RQ1(Architecture,Can a hybrid...outperform either paradigm alone)\u3001RQ2(Sim-to-real transferability,How can a world model...be adapted)\u3001RQ3(Long-horizon reasoning,Can the proposed world model support long-horizon)\u30023 \u4e2a\u7591\u95ee\u53e5,\u805a\u7126\u5177\u4f53\u95ee\u9898\u3002baseline \u5728 RQ \u4e0a\u505a\u5f97\u4e0d\u9519\u3002"
+        },
+        {
+          "text": "\u8ba8\u8bbagenerative vs latent\u6743\u8861\u6709justification",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a:\u4e3b\u5f20 hybrid latent-generative,\u4ee5 latent \u52a8\u529b\u5b66(DreamerV3 \u5f0f RSSM)\u4f5c\u9aa8\u5e72+diffusion \u751f\u6210\u5934\u63d0\u4f9b\u9ad8\u4fdd\u771f,\u901a\u8fc7\u4e00\u81f4\u6027\u8026\u5408\u76ee\u6807\u4e92\u76f8\u76d1\u7763\u3002\u7ed9 justification\u3002"
+        },
+        {
+          "text": "Methodology\u542b\u4eff\u771f\u5668/\u6570\u636e\u96c6/baseline/\u6307\u6807/\u6d88\u878d",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a:\u4eff\u771f benchmark MetaWorld/RLBench/contact-rich \u5957\u4ef6;baseline DreamerV3/TD-MPC/V-JEPA \u5f0f/diffusion-only;\u771f\u673a Franka+\u8155\u90e8 RGB-D\u3002\u8981\u7d20\u9f50\u5168(\u6d88\u878d\u672a\u660e\u786e\u4f46\u65b9\u6cd5\u5728)\u3002"
+        },
+        {
+          "text": "\u542bsim-to-real\u7b56\u7565\u6216\u771f\u673a\u5b89\u5168\u534f\u8bae",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a:\u63d0\u51fa transfer the world model itself,\u4e09\u6761\u4e92\u8865\u673a\u5236\u2014\u2014latent \u7a7a\u95f4\u57df\u968f\u673a\u5316\u3001\u5c0f\u6837\u672c\u771f\u5b9e\u6570\u636e latent \u5fae\u8c03\u3001\u6b8b\u5dee\u52a8\u529b\u5b66\u6821\u6b63\u3002sim-to-real \u7b56\u7565\u5728\u3002"
+        },
+        {
+          "text": "\u7b97\u529b+\u53ef\u590d\u73b0",
+          "passed": false,
+          "evidence": "subagent \u62a5\u544a\u672a\u63d0\u53ca\u7b97\u529b\u9884\u7b97\u3001open weights\u3001model version\u3001seed\u3001\u5f00\u6e90\u8ba1\u5212\u3002\u5224 fail\u3002"
+        },
+        {
+          "text": "\u56de\u7b54so what",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a:\u6838\u5fc3\u5047\u8bbe transfer the world model itself \u800c\u975e\u4ec5 policy,\u6709\u7814\u7a76\u53d6\u5411\u4e0e\u8d21\u732e\u8bf4\u660e\u3002\u52c9\u5f3a pass\u3002"
+        },
+        {
+          "text": "\u98ce\u9669\u542b\u65b9\u5411\u88ab\u62a2\u53d1+sim-to-real gap+\u771f\u673a\u5b89\u5168",
+          "passed": false,
+          "evidence": "subagent \u62a5\u544a\u672a\u63d0\u53ca'\u65b9\u5411\u88ab\u62a2\u53d1''\u771f\u673a\u5b89\u5168'\u98ce\u9669\u8868\u3002sim-to-real gap \u4f5c\u4e3a\u7814\u7a76\u95ee\u9898\u5b58\u5728\u4f46\u975e\u98ce\u9669\u9884\u6848\u5f62\u5f0f\u3002\u5224 fail\u3002"
+        },
+        {
+          "text": "\u53cc\u8bed",
+          "passed": false,
+          "evidence": "subagent \u62a5\u544a\u672a\u63d0\u53ca\u4e2d\u6587\u8bf4\u660e;\u4ea7\u51fa\u4e3a\u7eaf\u82f1\u6587\u3002\u5224 fail\u3002"
+        },
+        {
+          "text": "\u5f15\u7528\u771f\u5b9e\u6216[\u9700\u6838\u5b9e]",
+          "passed": false,
+          "evidence": "subagent \u62a5\u544a\u672a\u63d0\u5f15\u7528\u5904\u7406,\u65e0\u6cd5\u8bc1\u5b9e\u771f\u5b9e\u6027,\u672a\u7528 [\u9700\u6838\u5b9e] \u5360\u4f4d\u3002\u5224 fail(\u4fdd\u5b88)\u3002"
+        },
+        {
+          "text": "\u63cf\u8ff0\u7814\u7a76\u65b9\u5411\u800c\u975e\u7aef\u5230\u7aef\u65b9\u6848",
+          "passed": false,
+          "evidence": "subagent \u62a5\u544a:Proposed Approach 5 \u5c0f\u8282\u542b hybrid \u67b6\u6784\u3001transfer \u4e09\u673a\u5236\u2014\u2014\u867d RQ \u662f\u7814\u7a76\u65b9\u5411\u5f0f,\u4f46 Approach \u628a\u65b9\u6848\u5199\u6b7b(hybrid latent-generative + \u4e09\u673a\u5236)\u3002\u4ecb\u4e8e\u4e4b\u95f4,\u5224 fail(\u65b9\u6848\u63cf\u8ff0\u504f\u7aef\u5230\u7aef)\u3002"
+        }
+      ],
+      "notes": [
+        "\u65e0\u53cc\u8bed\u3001\u65e0\u7b97\u529b/\u53ef\u590d\u73b0\u3001\u65e0\u98ce\u9669\u8868\u3001\u5f15\u7528\u672a\u6807[\u9700\u6838\u5b9e]\u3001\u65b9\u6848\u504f\u7aef\u5230\u7aef"
+      ]
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 472.5,
+        "stddev": 366.0943,
+        "min": 270.0,
+        "max": 1020.0
+      },
+      "tokens": {
+        "mean": 0.0,
+        "stddev": 0.0,
+        "min": 0,
+        "max": 0
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 0.4612,
+        "stddev": 0.1366,
+        "min": 0.3,
+        "max": 0.6
+      },
+      "time_seconds": {
+        "mean": 88.75,
+        "stddev": 49.3921,
+        "min": 30.0,
+        "max": 150.0
+      },
+      "tokens": {
+        "mean": 0.0,
+        "stddev": 0.0,
+        "min": 0,
+        "max": 0
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.54",
+      "time_seconds": "+383.8",
+      "tokens": "+0"
+    }
+  },
+  "notes": []
+}

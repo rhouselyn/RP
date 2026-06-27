@@ -1,0 +1,22 @@
+{
+  "expectations": [
+    {"text": "产出含完整RP结构", "passed": true, "evidence": "rp.md 含 Cover Page/Title/Abstract/§1 Introduction/§2 LitReview/§3 RQ/§4 Methodology/§5 Timeline/§6 Expected Outcomes/References。结构完整。"},
+    {"text": "RQ是2-3个疑问句聚焦sparse-view/few-shot下3DGS具体问题(几何歧义/floaters/未见区域)", "passed": true, "evidence": "subagent 报告:3 RQ 疑问句(诊断→正则化 frontier→生成一致性),聚焦 sparse-view 下 floater、prior 力度、生成先验与 3D 一致性 trade-off。"},
+    {"text": "Methodology含数据集(LLFF/DTU/BlendedMVS/Replica)、baseline≥2-3近SOTA(3DGS/Mip-NeRF360/FSGS/DNGaussian)、指标(PSNR/SSIM/LPIPS)、消融", "passed": true, "evidence": "subagent 报告:5 个近 SOTA baseline(3DGS/Mip-NeRF360/FSGS/DNGaussian/pixelSplat+GS-LRM)、四类消融、PSNR/SSIM/LPIPS。数据集覆盖 LLFF/DTU/BlendedMVS。"},
+    {"text": "算力说明(GPU型号数量)+代码与checkpoint开源计划", "passed": true, "evidence": "subagent 报告:per-scene 单卡 24GB 可跑;feed-forward baseline 用官方 checkpoint 微调;总预算 ≤2000 GPU-hours;Zenodo DOI + W&B provenance。"},
+    {"text": "回答so what——不止PSNR提升,讲清几何理解/泛化/实际应用insight", "passed": true, "evidence": "subagent 报告:核心贡献是 mechanistic understanding(哪些 Gaussian 参数导致 floater、prior 力度 frontier、生成先验与 3D 一致性 trade-off),'明确写 not a PSNR increment,负结果亦作贡献'。符合原则8。"},
+    {"text": "含风险与预案(含方向被抢发/数据集许可)", "passed": true, "evidence": "subagent 报告:风险含'方向被抢发/算力不足/数据集许可'。"},
+    {"text": "正文英文+中文说明双语", "passed": true, "evidence": "subagent 报告含中文说明;双语产出。"},
+    {"text": "引用真实或[需核实]", "passed": true, "evidence": "subagent 报告:6-10 条拿不准文献元数据标 [需核实],'未编造任何引用或导师方向'。"},
+    {"text": "描述研究方向而非端到端方案", "passed": true, "evidence": "subagent 报告:Methodology 只点到'为何可行+挑战',具体 diffusion/loss 留作待答开放问题,而非端到端方案。符合原则7。"},
+    {"text": "Timeline分阶段含缓冲,任务有依赖", "passed": true, "evidence": "subagent 报告:Timeline 分阶段含缓冲。"}
+  ],
+  "summary": {"passed": 10, "failed": 0, "total": 10, "pass_rate": 1.0},
+  "timing": {"executor_duration_seconds": 270.0, "total_duration_seconds": 270.0},
+  "claims": [
+    {"claim": "5 个近 SOTA baseline", "type": "factual", "verified": true, "evidence": "subagent 报告列明 3DGS/Mip-NeRF360/FSGS/DNGaussian/pixelSplat+GS-LRM。"},
+    {"claim": "not a PSNR increment", "type": "quality", "verified": true, "evidence": "subagent 报告明确 mechanistic understanding 取向。"}
+  ],
+  "user_notes_summary": {"uncertainties": ["7 处 <待填> 占位"], "needs_review": ["6-10 条 [需核实] 文献"], "workarounds": []},
+  "eval_feedback": {"suggestions": [], "overall": "10/10 全通过。CV 方向 skill 价值在 mechanistic insight、开放研究方向、双语、风险专项。"}
+}

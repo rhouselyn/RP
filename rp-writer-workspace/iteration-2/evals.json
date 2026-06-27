@@ -1,0 +1,85 @@
+{
+  "skill_name": "rp-writer",
+  "iteration": 2,
+  "focus": "计算机科学方向(LLM/CV/多模态/世界模型)",
+  "source_note": "测试用例基于真实 CS 研究热点与 PhD 论文方向构造:LLM 对齐(HKUST Lion/WebR/FollowBench)、3D Gaussian Splatting(GaussTR/PF3plat)、长视频理解(VideoMind/F-16/SEN)、具身世界模型(Berkeley MaskDP/MOKA、RoboScape、Genie Envisioner、WoW)",
+  "evals": [
+    {
+      "id": 4,
+      "name": "llm-alignment",
+      "direction": "LLM",
+      "prompt": "我硕士做NLP,想申港校PhD(港中文或港科),套磁了一个做LLM对齐的导师,他最近发RLHF和DPO相关的工作。我想写research proposal,方向想做'让LLM对齐更高效',但具体怎么切入没想好。帮我写一份完整RP,英文正文,3000词左右。我实验室算力一般,有几张A100。",
+      "expected_output": "面向LLM对齐导师的RP,体现研究方向(非端到端方案),open weights模型,可复现性,与RLHF/DPO方向匹配",
+      "assertions": [
+        "产出含完整RP结构(Title/Abstract/Intro/LitReview/RQ/Methodology/Timeline/Outcomes/References)",
+        "Research Questions是2-3个疑问句(非'用X做Y'的方法陈述),且互相逻辑递进",
+        "描述的是研究方向而非端到端解决方案——读完problem setting无法猜出全部技术细节,方法部分留有开放挑战",
+        "核心方法用open weights模型(Llama/Mistral/Qwen等),而非闭源API(GPT-4/Claude)作主推理引擎",
+        "Methodology含baseline(≥2-3个近1-2年SOTA如DPO/PPO/SLIC)、消融实验、算力说明、model version/seed",
+        "回答了'so what'——不止刷榜,讲清insight/root cause/为什么重要",
+        "包含风险与预案,且含'方向被抢发(arXiv同题)'和'算力不足'两条CS高频风险",
+        "诚实评估算力现实(几张A100),未承诺从头预训练LLM等过度野心方案",
+        "正文英文+中文说明双语产出",
+        "引用真实或标[需核实],无编造DOI/作者"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "cv-3d-gaussian-splatting",
+      "direction": "CV",
+      "prompt": "我申美国PhD,做3D视觉。套磁的导师做neural rendering和3D Gaussian Splatting。我想做few-shot或sparse-view下的3D场景重建,但不确定怎么形成research proposal。帮我写一份RP,英文,2500-3000词。",
+      "expected_output": "3DGS sparse-view重建RP,实验型/算法型混合methodology,与导师neural rendering方向匹配,含真实数据集与baseline",
+      "assertions": [
+        "产出含完整RP结构",
+        "Research Questions是2-3个疑问句,聚焦sparse-view/few-shot下3DGS的具体问题(如几何歧义、floaters、未见区域)",
+        "Methodology含数据集(如LLFF/DTU/BlendedMVS/Replica)、baseline(≥2-3个近SOTA如3DGS/Mip-NeRF360/FSGS)、评估指标(PSNR/SSIM/LPIPS)、消融",
+        "算力说明(GPU型号数量)+ 代码与checkpoint开源计划",
+        "回答'so what'——不止PSNR提升,讲清几何理解/泛化/实际应用的insight",
+        "含风险与预案(含'方向被抢发''数据集许可'等)",
+        "正文英文+中文说明双语",
+        "引用真实或标[需核实]",
+        "描述研究方向而非端到端方案",
+        "Timeline分阶段含缓冲,任务有依赖"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "multimodal-long-video",
+      "direction": "多模态",
+      "prompt": "我申英国PhD,做多模态/视频-语言模型。导师做long video understanding和video-language agent。我想写RP做长视频理解,可能涉及temporal reasoning或高效的长上下文。帮我写一份完整RP,英文,3000词左右。",
+      "expected_output": "长视频理解RP,体现video-language agent方向匹配,含视频数据集与评估,可复现性",
+      "assertions": [
+        "产出含完整RP结构",
+        "Research Questions是2-3个疑问句,聚焦长视频的具体挑战(如long-temporal reasoning、token爆炸、时序定位)",
+        "Methodology含视频数据集(如EgoSchema/MVBench/Video-MME/LongVideoBench)、baseline(≥2-3个近SOTA如VideoLLaMA/LLaVA-Video/VideoMind)、评估指标、消融",
+        "算力说明 + 可复现(open weights/model version/seed)",
+        "回答'so what'——讲清长视频理解的insight而非单纯刷Video-MME",
+        "含风险与预案(含'方向被抢发''算力不足''长视频标注成本')",
+        "正文英文+中文说明双语",
+        "引用真实或标[需核实]",
+        "描述研究方向而非端到端方案",
+        "与导师(video-language agent)方向有明确匹配呼应"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "world-model-embodied",
+      "direction": "世界模型",
+      "prompt": "我申新加坡或欧洲PhD,做embodied AI / world model。导师做robot learning和sim-to-real。我想写RP做world model for manipulation,但不确定是做generative world model还是latent world model,也没想好怎么和真实机器人结合。帮我写一份RP,英文,3000词左右。",
+      "expected_output": "具身世界模型RP,讨论generative vs latent的权衡,sim-to-real策略,与robot learning导师方向匹配",
+      "assertions": [
+        "产出含完整RP结构",
+        "Research Questions是2-3个疑问句,聚焦world model for manipulation的具体问题(如物理一致性、长horizon规划、sim-to-real gap)",
+        "讨论了generative world model vs latent world model的权衡(而非盲目选一种),有justification",
+        "Methodology含仿真器(Isaac Gym/Habitat/Genesis/MuJoCo等)、数据集(如AgiBot-World/RLBench/DROID)、baseline、评估指标(success rate/sample efficiency/return)、消融",
+        "含sim-to-real策略(domain randomization/系统识别等)或真机实验安全协议",
+        "算力说明 + 可复现",
+        "回答'so what'——讲清world model给manipulation带来的insight",
+        "含风险与预案(含'方向被抢发''sim-to-real gap''真机安全')",
+        "正文英文+中文说明双语",
+        "引用真实或标[需核实]",
+        "描述研究方向而非端到端方案"
+      ]
+    }
+  ]
+}

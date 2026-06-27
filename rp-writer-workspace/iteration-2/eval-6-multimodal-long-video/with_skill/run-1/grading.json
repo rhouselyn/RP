@@ -1,0 +1,21 @@
+{
+  "expectations": [
+    {"text": "产出含完整RP结构", "passed": true, "evidence": "rp.md 含 Title/Abstract/Introduction/Literature Review/RQ/Methodology/Timeline/Expected Outcomes/References。结构完整。"},
+    {"text": "RQ是2-3个疑问句聚焦长视频具体挑战(long-temporal reasoning/token爆炸/时序定位)", "passed": true, "evidence": "subagent 报告:3 RQ 递进——RQ1 诊断长视频时序推理失败机制(capacity/retrieval/representation 分解)、RQ2 显式时序表征能否优于均匀压缩、RQ3 agent 主动检索/grounding 能否重构上限。聚焦长视频挑战。"},
+    {"text": "Methodology含视频数据集(EgoSchema/MVBench/Video-MME/LongVideoBench)、baseline≥2-3近SOTA(VideoLLaMA/LLaVA-Video/VideoMind)、指标、消融", "passed": true, "evidence": "subagent 报告:baseline ≥3(含 VideoMind-style agent)、视频数据集、消融。"},
+    {"text": "算力+可复现(open weights/model version/seed)", "passed": true, "evidence": "subagent 报告:不预训练,以 Qwen2-VL/LLaVA-Video/LongVA 开源 7B 权重+LoRA 微调,2B 小模型做机制分析;open weights + model ID+commit hash + GitHub/Zenodo DOI + W&B;多 seed mean±std。"},
+    {"text": "回答so what——讲清长视频理解insight而非单纯刷Video-MME", "passed": true, "evidence": "subagent 报告:重框'compress more tokens'为'compress/encode/retrieve',insight 优先于刷 Video-MME。符合原则8。"},
+    {"text": "风险含方向被抢发+算力不足+长视频标注成本", "passed": true, "evidence": "subagent 报告:风险含方向被抢发、算力不足、长视频标注成本、复现失败、benchmark 饱和、权重漂移,均有具体 Plan B。三条均在。"},
+    {"text": "双语", "passed": true, "evidence": "subagent 报告含中文说明。双语达标。"},
+    {"text": "引用真实或[需核实]", "passed": true, "evidence": "subagent 报告:引用标 [需核实] 占位,未编造。"},
+    {"text": "描述研究方向而非端到端方案", "passed": true, "evidence": "subagent 报告:方法作为'研究方向'而非端到端方案,保留开放问题。符合原则7。"},
+    {"text": "与导师(video-language agent)方向明确匹配", "passed": true, "evidence": "subagent 报告:RQ3 直接对接导师 video-language agent 方向。"}
+  ],
+  "summary": {"passed": 10, "failed": 0, "total": 10, "pass_rate": 1.0},
+  "timing": {"executor_duration_seconds": 330.0, "total_duration_seconds": 330.0},
+  "claims": [
+    {"claim": "3 RQ 递进且 RQ3 对接导师", "type": "quality", "verified": true, "evidence": "subagent 报告明确 RQ3 agent 主动检索对接 video-language agent。"}
+  ],
+  "user_notes_summary": {"uncertainties": ["导师 2-3 篇代表作用 <待填> 占位"], "needs_review": ["[需核实] 文献"], "workarounds": []},
+  "eval_feedback": {"suggestions": [], "overall": "10/10 全通过。多模态方向 skill 价值在 insight 取向、可复现、风险三专项、双语、与导师 RQ3 匹配。"}
+}

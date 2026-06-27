@@ -62,6 +62,26 @@
 - **为什么**:科研一定有意外;无依赖显没想清逻辑。
 - **改**:留缓冲;体现"基于 RQ1 结果做 RQ2"。
 
+## 13. 把 RP 写成刷榜工程(CS 高发)
+- **现象**:全篇围绕"我把 mAP/accuracy 提了 X%",无 insight。
+- **为什么**:Benchmarks 不是科学。每年几千篇论文,2% 提升没人关心;reviewer/导师要的是 root cause、新理解、为什么重要。
+- **改**:回答 "so what":这个改进揭示了什么?为什么重要?读者学到什么?把数字当证据而非目的。
+
+## 14. 描述解决方案而非研究方向(CS 高发)
+- **现象**:把一套端到端精致方案写死,连 PhD 三年的实现细节都铺满。
+- **为什么**:剑桥 CS 教授原话"Finding a good solution is what the PhD is for!"。RP 要 identify/motivate 研究方向,不是交答卷。读者读完 problem setting 就猜出全部技术内容 = 太浅,你在做工程不是研究。
+- **改**:方法部分点到"为何这条路可行 + 关键挑战",留开放问题;用 `references/heilmeier.md` 第 3 问自检 concept delta。
+
+## 15. 过度野心(算力/数据远超现实)
+- **现象**:实验室只有 1 张 GPU 却承诺从头预训练 LLM;数据集拿不到却写进核心实验。
+- **为什么**:导师最怕招来做不下去的学生;overly ambitious 是 SOP/RP 被拒高频原因。
+- **改**:诚实评估现实约束,给可控替代(开源 checkpoint 微调、更小模型验证思路);可行性四要素里"资源"必须真实。
+
+## 16. 闭源 API 当核心方法且无可复现路径(LLM 高发)
+- **现象**:核心实验全靠 GPT-4/Claude API,无 open 等价物,无 model version。
+- **为什么**:reviewer 会问"Can we reproduce with your exact code?"答"否"就丢 credibility;API 端点会更新,baseline 会漂移。
+- **改**:核心方法用 open weights(Llama/Mistral/Qwen);若必须用闭源,给精确 model ID+commit hash、seed、温度,并提供 open 复现路径;详 见 `references/heilmeier.md` 可复现性硬关。
+
 ---
 
 ## 快速自检口诀

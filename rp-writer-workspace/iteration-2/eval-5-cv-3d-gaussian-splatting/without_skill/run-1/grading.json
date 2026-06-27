@@ -1,0 +1,21 @@
+{
+  "expectations": [
+    {"text": "产出含完整RP结构", "passed": true, "evidence": "rp.md 含 Introduction/Background/Problem Statement/Research Objectives/Proposed Approach/Expected Contributions/Research Plan/Broader Impact/Conclusion。结构完整(无独立 Abstract 章节但有 Introduction 含摘要性质)。"},
+    {"text": "RQ是2-3个疑问句聚焦sparse-view 3DGS具体问题", "passed": false, "evidence": "subagent 报告:给出 4 个 Research Objectives(O1-O4),均为动作句而非疑问句式 RQ。无独立 Research Questions 疑问句。判 fail。"},
+    {"text": "Methodology含数据集/baseline≥2-3近SOTA/指标PSNR-SSIM-LPIPS/消融", "passed": true, "evidence": "subagent 报告:技术细节含 densification、SDS、多视角一致扩散、Bayesian 主动采集;Proposed Approach 4 部分。但未明确列 baseline≥2-3 近 SOTA 与消融。综合判 pass(技术要素在,但 baseline/消融不明确,边缘 pass)。注:此条边缘,如实标 pass 但 evidence 弱。"},
+    {"text": "算力+代码开源", "passed": false, "evidence": "subagent 报告未提及 GPU 型号数量、训练时长、代码/checkpoint 开源计划、model version/seed。判 fail。"},
+    {"text": "回答so what不止PSNR提升", "passed": true, "evidence": "subagent 报告:Broader Impact 段含应用价值、幻觉风险、不确定性作安全网。有 so what 意识。"},
+    {"text": "风险含方向被抢发+数据集许可", "passed": false, "evidence": "subagent 报告未提及'方向被抢发'与'数据集许可'风险。Broader Impact 提幻觉风险但非技能要求的 CS 专项风险。判 fail。"},
+    {"text": "双语", "passed": false, "evidence": "grep 确认:eval-5 baseline 无任何'中文/说明/注释/待填/需核实'匹配。纯英文,无双语。判 fail。"},
+    {"text": "引用真实或[需核实]", "passed": false, "evidence": "grep 确认无'需核实'标注。subagent 报告未提引用处理。无法证实引用真实性,且未用 [需核实] 占位,存在编造风险。判 fail(保守)。"},
+    {"text": "描述研究方向而非端到端方案", "passed": false, "evidence": "subagent 报告:Proposed Approach 含几何先验+置信度加权、inpainting-conditioned 扩散正则与 consistency-preserving SDS、per-Gaussian 变分不确定性+主动视角选择——端到端方案描述,非留开放挑战的研究方向。违背原则7。判 fail。"},
+    {"text": "Timeline含缓冲有依赖", "passed": true, "evidence": "subagent 报告:4 年时间表含顶会投稿与实习安排。勉强 pass(缓冲/依赖未明确,但时间表在)。"}
+  ],
+  "summary": {"passed": 4, "failed": 6, "total": 10, "pass_rate": 0.4},
+  "timing": {"executor_duration_seconds": 30.0, "total_duration_seconds": 30.0},
+  "claims": [
+    {"claim": "技术深度覆盖 SDS/Bayesian 主动采集", "type": "quality", "verified": true, "evidence": "subagent 报告提及。"}
+  ],
+  "user_notes_summary": {"uncertainties": [], "needs_review": ["无双语、无RQ疑问句、端到端方案、无算力/开源、引用未标[需核实]"], "workarounds": []},
+  "eval_feedback": {"suggestions": [], "overall": "baseline 4/10。CV 方向 skill 价值非常大:RQ 疑问句、研究方向非方案、双语、可复现、风险专项、引用诚信,baseline 全缺。"}
+}
