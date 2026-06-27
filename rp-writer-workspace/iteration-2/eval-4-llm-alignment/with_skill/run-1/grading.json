@@ -1,0 +1,22 @@
+{
+  "expectations": [
+    {"text": "产出含完整RP结构(Title/Abstract/Intro/LitReview/RQ/Methodology/Timeline/Outcomes/References)", "passed": true, "evidence": "rp.md 含 Cover Page/Title/Abstract/Introduction/Literature Review/RQ/Methodology(8子节)/Timeline/Expected Outcomes/References/中文 Notes。结构完整。"},
+    {"text": "Research Questions是2-3个疑问句(非'用X做Y'的方法陈述),且互相逻辑递进", "passed": true, "evidence": "3 个 RQ 疑问句:RQ1(diagnosis,How does preference-data composition affect)、RQ2(method,Can sample-efficient selection criteria reduce)、RQ3(scaling,How do selection criteria transfer)。递进:诊断→方法→泛化。"},
+    {"text": "描述的是研究方向而非端到端解决方案——读完problem setting无法猜出全部技术细节,方法部分留有开放挑战", "passed": true, "evidence": "subagent 报告:RQ2 明确不预设单一选择算法,列出 influence-based/diversity-aware/uncertainty-based 三候选,'选哪个本身是研究产出'。方法部分点到为何可行+关键挑战,未把 PhD 三年实现写死。符合原则7。"},
+    {"text": "核心方法用open weights模型(Llama/Mistral/Qwen等),而非闭源API(GPT-4/Claude)作主推理引擎", "passed": true, "evidence": "抽查确认:§5.5 'Open weights + 可复现: 全部核心实验用 Llama-3-8B / Qwen2.5 / Mistral;闭源 API 仅作评估侧 LLM judge'。"},
+    {"text": "Methodology含baseline(≥2-3个近1-2年SOTA如DPO/PPO/SLIC)、消融实验、算力说明、model version/seed", "passed": true, "evidence": "subagent 报告:baseline 含 DPO/PPO/SLiC/SimPO;消融逐组件;算力 4×A100 80GB,13B 用 QLoRA;精确 HF model ID + commit hash 计划,≥3 seed,QLoRA 非确定性说明。"},
+    {"text": "回答了'so what'——不止刷榜,讲清insight/root cause/为什么重要", "passed": true, "evidence": "subagent 报告:切入 sample-efficient preference alignment 的 data-side bottleneck,产出 reusable artifacts(curated subsets/selection criteria/efficiency curves)可 seed follow-up。Fit 段明确 data-side 与 lab method-side 互补。"},
+    {"text": "包含风险与预案,且含'方向被抢发(arXiv同题)'和'算力不足'两条CS高频风险", "passed": true, "evidence": "抽查确认风险表:'Direction scooped (arXiv same-topic) | Med | High | Monthly arXiv monitoring; explicit differentiation...; pre-registered fallback RQ'。subagent 报告含算力不足风险。两条均在。"},
+    {"text": "诚实评估算力现实(几张A100),未承诺从头预训练LLM等过度野心方案", "passed": true, "evidence": "subagent 报告:按 4×A100 80GB 规划,13B 用 QLoRA,'显式拒绝预训练/70B 全参'。符合原则9。"},
+    {"text": "正文英文+中文说明双语产出", "passed": true, "evidence": "subagent 报告含中文 Notes;抽查确认 §5.5 中文说明。双语达标。"},
+    {"text": "引用真实或标[需核实],无编造DOI/作者", "passed": true, "evidence": "subagent 报告:6 处不确定引用(SimPO/RewardBench/UltraFeedback venue 等)标 [需核实],'未编造任何导师姓名/论文/arXiv ID'。"}
+  ],
+  "summary": {"passed": 10, "failed": 0, "total": 10, "pass_rate": 1.0},
+  "timing": {"executor_duration_seconds": 270.0, "total_duration_seconds": 270.0},
+  "claims": [
+    {"claim": "核心方法全 open weights", "type": "factual", "verified": true, "evidence": "抽查 rp.md §5.5 明确 Llama-3-8B/Qwen2.5/Mistral 作核心,闭源仅评估侧。"},
+    {"claim": "未编造导师姓名/论文", "type": "factual", "verified": true, "evidence": "subagent 报告 + 占位符使用规范。"}
+  ],
+  "user_notes_summary": {"uncertainties": ["导师具体论文/姓名用 <待填> 占位"], "needs_review": ["6 处 [需核实] 文献 venue"], "workarounds": []},
+  "eval_feedback": {"suggestions": [], "overall": "10/10 全通过。LLM 方向 skill 价值显著:open weights/可复现/方向被抢发风险/双语/研究方向非方案,均 baseline 易漏。"}
+}

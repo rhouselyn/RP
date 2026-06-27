@@ -1,0 +1,21 @@
+{
+  "expectations": [
+    {"text": "产出含完整RP结构", "passed": true, "evidence": "rp.md 含 Abstract/Introduction & Motivation/Background & Related Work/Research Questions & Objectives/Proposed Approach(三 Work Package)/Evaluation Plan/Timeline/Expected Contributions/Why This Programme and Supervisor。结构完整。"},
+    {"text": "RQ是2-3个疑问句聚焦长视频具体挑战", "passed": false, "evidence": "subagent 报告:三块工作包对应 RQ1/RQ2/RQ3,但未明确说明 RQ 为疑问句式(报告用'对应 RQ1 高效长上下文'等表述,似 objectives 而非疑问句)。无法证实疑问句形式。判 fail(保守)。"},
+    {"text": "Methodology含视频数据集/baseline≥2-3近SOTA/指标/消融", "passed": false, "evidence": "subagent 报告:三 Work Package 描述方法,但未明确列视频数据集名、baseline≥2-3 近 SOTA、评估指标、消融。'Evaluation Plan'存在但细节不明。判 fail。"},
+    {"text": "算力+可复现(open weights/model version/seed)", "passed": false, "evidence": "subagent 报告未提及算力、open weights、model version、seed、开源计划。判 fail。"},
+    {"text": "回答so what非单纯刷Video-MME", "passed": true, "evidence": "subagent 报告:三轴展开(高效长上下文+组合式时序推理+视频-语言智能体),有研究取向。勉强 pass。"},
+    {"text": "风险含方向被抢发+算力不足+长视频标注成本", "passed": false, "evidence": "subagent 报告未提及风险表或上述三条 CS 专项风险。判 fail。"},
+    {"text": "双语", "passed": false, "evidence": "grep 确认:eval-6 baseline 无任何'中文/说明/注释/待填/需核实'匹配。纯英文。判 fail。"},
+    {"text": "引用真实或[需核实]", "passed": false, "evidence": "subagent 报告:引用以'key works include'形式给出,'避免编造具体条目细节'——即未给具体引用,无法核实。判 fail(无具体引用亦不达标)。"},
+    {"text": "描述研究方向而非端到端方案", "passed": false, "evidence": "subagent 报告:三 Work Package(WP1 分层事件中心化视频记忆、WP2 组合式时序推理模块+诊断 benchmark、WP3 智能体循环+工具调用)——端到端方案描述。判 fail。"},
+    {"text": "与导师video-language agent方向明确匹配", "passed": true, "evidence": "subagent 报告:WP3 智能体循环+工具调用对接导师 video-language agent。匹配。"}
+  ],
+  "summary": {"passed": 3, "failed": 7, "total": 10, "pass_rate": 0.3},
+  "timing": {"executor_duration_seconds": 150.0, "total_duration_seconds": 150.0},
+  "claims": [
+    {"claim": "三 Work Package 对应 RQ", "type": "quality", "verified": false, "evidence": "RQ 形式与疑问句不可证。"}
+  ],
+  "user_notes_summary": {"uncertainties": [], "needs_review": ["无双语、无风险、无可复现、无具体引用、端到端方案"], "workarounds": []},
+  "eval_feedback": {"suggestions": [], "overall": "baseline 3/10。多模态方向 skill 价值极大:几乎全部 CS 专项要素 baseline 都缺。"}
+}

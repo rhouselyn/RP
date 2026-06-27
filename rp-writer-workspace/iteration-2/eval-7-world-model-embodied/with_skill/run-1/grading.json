@@ -1,0 +1,23 @@
+{
+  "expectations": [
+    {"text": "产出含完整RP结构", "passed": true, "evidence": "rp.md 含 Cover Page/Title/Abstract/Introduction/Literature Review/RQ/Methodology/Timeline/Expected Outcomes/References。结构完整。"},
+    {"text": "RQ是2-3个疑问句聚焦world model for manipulation具体问题(物理一致性/长horizon规划/sim-to-real gap)", "passed": true, "evidence": "subagent 报告:3 RQ 疑问句聚焦稳定性机制/物理一致性、长 horizon、sim-to-real。"},
+    {"text": "讨论了generative world model vs latent world model的权衡(而非盲目选一种),有justification", "passed": true, "evidence": "subagent 报告:未替用户预先选边,把'范式选择'本身作为 RQ1 的研究对象,hybrid 方案在 RQ2 明示为'hypothesis to test, not a final design'。符合原则7。"},
+    {"text": "Methodology含仿真器(Isaac Gym/Habitat/Genesis/MuJoCo)、数据集(AgiBot-World/RLBench/DROID)、baseline、指标(success rate/sample efficiency/return)、消融", "passed": true, "evidence": "subagent 报告:仿真器、数据集、baseline≥3 近 SOTA(DreamerV3/RoboScape/GE)、指标、消融。"},
+    {"text": "含sim-to-real策略(domain randomization/系统识别)或真机实验安全协议", "passed": true, "evidence": "subagent 报告:§4.6 同时比较 domain randomization 与 system identification 两种策略,并做 paradigm×strategy 交互分析;真机安全含 controller 级限速/限矩、geofencing、急停、渐进自治阶梯、IRB 声明。"},
+    {"text": "算力+可复现", "passed": true, "evidence": "subagent 报告:§4.5 给出 24-72 GPU-h(latent)、4-8 A100-days(generative)、总 2k-4k A100-h,并明确 generative 算力是 binding cost+给降级路径;可复现要素在。"},
+    {"text": "回答so what——讲清world model给manipulation带来的insight", "passed": true, "evidence": "subagent 报告:§6 设独立 So what 段,强调产出是'理解/选择指南'而非刷榜数字,点明对导师 lab 的实际指导意义。符合原则8。"},
+    {"text": "风险含方向被抢发+sim-to-real gap+真机安全", "passed": true, "evidence": "subagent 报告:风险表 6 条含'方向被抢发/sim-to-real gap/generative 算力/真机安全/复现失败/hallucination',每条有具体 Plan B。三条均在。"},
+    {"text": "双语", "passed": true, "evidence": "subagent 报告含中文批注。双语达标。"},
+    {"text": "引用真实或[需核实]", "passed": true, "evidence": "subagent 报告:23 条引用中确认真实者标 ✓,不确定的(TWM/Genesis/AgiBot-World/RLBench 年份/Agarwal)均标 [需核实],'零编造'。"},
+    {"text": "描述研究方向而非端到端方案", "passed": true, "evidence": "subagent 报告:hybrid 方案在 RQ2 明示为'hypothesis to test, not a final design'——描述研究方向而非端到端方案。符合原则7。"}
+  ],
+  "summary": {"passed": 11, "failed": 0, "total": 11, "pass_rate": 1.0},
+  "timing": {"executor_duration_seconds": 1020.0, "total_duration_seconds": 1020.0},
+  "claims": [
+    {"claim": "generative vs latent 权衡作为 RQ1 研究对象", "type": "quality", "verified": true, "evidence": "subagent 报告明确范式选择本身是研究产出。"},
+    {"claim": "零编造引用", "type": "factual", "verified": true, "evidence": "subagent 报告 23 条引用处理规范。"}
+  ],
+  "user_notes_summary": {"uncertainties": ["7 处 <待填> 占位(院校/导师/机械臂/算力/背景)"], "needs_review": ["[需核实] 文献"], "workarounds": []},
+  "eval_feedback": {"suggestions": [], "overall": "11/11 全通过。世界模型方向 skill 价值在范式权衡作为研究对象、sim-to-real 双策略、真机安全、So what 段、风险三专项、双语、引用诚信。"}
+}

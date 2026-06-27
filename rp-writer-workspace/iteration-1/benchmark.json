@@ -1,0 +1,485 @@
+{
+  "metadata": {
+    "skill_name": "rp-writer",
+    "skill_path": "/workspace/rp-writer",
+    "executor_model": "<model-name>",
+    "analyzer_model": "<model-name>",
+    "timestamp": "2026-06-27T10:06:53Z",
+    "evals_run": [
+      1,
+      2,
+      3
+    ],
+    "runs_per_configuration": 3
+  },
+  "runs": [
+    {
+      "eval_id": 1,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 10,
+        "failed": 0,
+        "total": 10,
+        "time_seconds": 195.0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "\u4ea7\u51fa\u5305\u542b Title\u3001Abstract\u3001Introduction\u3001Literature Review\u3001Research Questions\u3001Methodology\u3001Timeline\u3001Expected Outcomes\u3001References \u4e5d\u4e2a\u90e8\u5206",
+          "passed": true,
+          "evidence": "rp.md \u542b \u00a71 Abstract\u3001\u00a72 Introduction & Background\u3001\u00a73 Literature Review\u3001\u00a74 Research Questions & Objectives\u3001\u00a75 Methodology & Feasibility\u3001\u00a76 Research Plan/Timeline\u3001\u00a77 Expected Outcomes\u3001\u00a78 References,Title \u5728\u6587\u9996\u3002\u4e5d\u90e8\u5206\u9f50\u5168\u3002"
+        },
+        {
+          "text": "Research Questions \u662f 2-3 \u4e2a\u5177\u4f53\u7684\u7591\u95ee\u53e5,\u800c\u975e\u4e3b\u9898\u8bcd,\u4e14\u4e92\u76f8\u6709\u903b\u8f91\u9012\u8fdb",
+          "passed": true,
+          "evidence": "\u00a74 \u7ed9\u51fa RQ1(diagnosis,How does non-IID affect convergence)\u3001RQ2(method,Can adaptive DP-FL achieve better utility-privacy)\u3001RQ3(trade-off,How do compression and DP interact)\u3002\u4e09\u95ee\u5747\u4e3a\u7591\u95ee\u53e5,\u6807\u6ce8\u4e3a'\u8bca\u65ad\u2192\u65b9\u6cd5\u2192\u6743\u8861'\u9012\u8fdb\u3002"
+        },
+        {
+          "text": "Methodology \u90e8\u5206\u542b\u6570\u636e\u96c6\u3001baseline\u3001\u63d0\u51fa\u65b9\u6cd5\u3001\u8bc4\u4f30\u6307\u6807\u3001\u6d88\u878d\u5b9e\u9a8c\u3001\u7b97\u529b\u8bf4\u660e\u7b49 ML \u7814\u7a76\u5177\u4f53\u8981\u7d20,\u800c\u975e\u6cdb\u6cdb'\u7528\u6df1\u5ea6\u5b66\u4e60'",
+          "passed": true,
+          "evidence": "\u00a75.1 \u4e09\u6570\u636e\u96c6(MIMIC-IV/eICU/CheXpert+NIH)\u3001\u00a75.2 \u516d\u4e2a baselines(FedAvg/FedProx/Per-FedAvg/FedPAQ/DP-FedAvg/Local/Centralized)\u3001\u00a75.3 APDP-FL \u4e09\u6a21\u5757\u3001\u00a75.4 \u8bc4\u4f30(AUROC/AUPRC/ECE \u7b49)+4 \u7ec4\u6d88\u878d\u3001\u00a75.5 Imperial HPC A100 \u7b97\u529b+\u5f00\u6e90\u8ba1\u5212\u3002\u8981\u7d20\u9f50\u5168\u3002"
+        },
+        {
+          "text": "\u5305\u542b\u660e\u786e\u7684\u98ce\u9669\u4e0e\u9884\u6848(risk + Plan B),\u9884\u6848\u5177\u4f53\u53ef\u6267\u884c\u800c\u975e'will find alternatives'",
+          "passed": true,
+          "evidence": "\u00a75.6 \u98ce\u9669\u8868 5 \u6761,\u6bcf\u6761\u542b Probability/Impact/Mitigation\u3002\u5982'eICU partition too coarse \u2192 Use synthetic DIRICHLET partition with known \u03b1; fall back to MIMIC-derived partitions',\u5177\u4f53\u53ef\u6267\u884c\u3002"
+        },
+        {
+          "text": "\u6b63\u6587\u4e3a\u82f1\u6587,\u8f85\u4ee5\u4e2d\u6587\u8bf4\u660e/\u6ce8\u91ca(\u53cc\u8bed\u4ea7\u51fa)",
+          "passed": true,
+          "evidence": "\u6b63\u6587\u82f1\u6587\u64b0\u5199,\u6bcf\u8282\u540e\u4ee5 *\u3010\u4e2d\u6587\u6ce8\u91ca:...\u3011* \u5f62\u5f0f\u7ed9\u51fa\u4e2d\u6587\u8bf4\u660e,\u6587\u672b\u6709'\u4e2d\u6587 Notes'\u3002\u53cc\u8bed\u4ea7\u51fa\u8fbe\u6807\u3002"
+        },
+        {
+          "text": "\u5f15\u7528\u6807\u6ce8\u771f\u5b9e\u6216\u6807 [\u9700\u6838\u5b9e],\u65e0\u7f16\u9020\u7684 DOI/\u4f5c\u8005",
+          "passed": true,
+          "evidence": "\u00a78 \u5171 26 \u6761\u5f15\u7528,\u5747\u4e3a FL/DP/\u533b\u7597 FL/\u6570\u636e\u96c6\u9886\u57df\u771f\u5b9e\u7ecf\u5178\u8bba\u6587(FedAvg/FedProx/DP-SGD/MIMIC-IV \u7b49)\u3002\u4ec5 [23] LDP-Fed \u6807 [\u9700\u6838\u5b9e:\u5e74\u4efd\u4e0e\u4f1a\u8bae\u540d]\u3002Notes \u7b2c 6 \u6761\u58f0\u660e'\u672a\u7f16\u9020\u4efb\u4f55 DOI \u6216\u865a\u6784\u4f5c\u8005'\u3002"
+        },
+        {
+          "text": "\u5305\u542b\u4e0e\u76ee\u6807\u5bfc\u5e08(\u8054\u90a6\u5b66\u4e60+\u9690\u79c1\u4fdd\u62a4+\u533b\u7597)\u65b9\u5411\u5339\u914d\u7684\u547c\u5e94\u70b9",
+          "passed": true,
+          "evidence": "\u00a72 \u672b\u6bb5\u3001\u00a77 Significance \u5747\u663e\u5f0f\u547c\u5e94 Prof. Li \u7684 federated + privacy-preserving ML \u65b9\u5411,\u5e76\u58f0\u660e'the work is motivated by, and designed to extend, recent research at Imperial College London led by Prof. Li'\u3002"
+        },
+        {
+          "text": "\u5305\u542b\u5206\u9636\u6bb5 Timeline \u8868\u683c\u6216\u7518\u7279\u56fe,\u4e14\u4efb\u52a1\u95f4\u6709\u4f9d\u8d56\u5173\u7cfb\u8bf4\u660e",
+          "passed": true,
+          "evidence": "\u00a76 Timeline \u8868\u683c\u5206 Y1/Y1-Y2/Y2/Y2-Y3/Y3 \u4e94\u9636\u6bb5,\u542b Months/Tasks/Expected output\u3002\u8868\u540e\u660e\u786e'The plan deliberately staggers RQ1 \u2192 RQ2 \u2192 RQ3 because RQ2's method rests on RQ1's characterization'\u3002"
+        },
+        {
+          "text": "\u672a\u51fa\u73b0 'will definitely prove'/'revolutionize' \u7b49\u8fc7\u5ea6\u627f\u8bfa\u8868\u8ff0",
+          "passed": true,
+          "evidence": "\u5168\u6587\u7528 'is expected to deliver''may inform''designed to extend' \u7b49\u514b\u5236\u8868\u8ff0,\u65e0 definitely/revolutionize \u7b49\u7edd\u5bf9\u5316\u8bcd\u3002"
+        },
+        {
+          "text": "Title \u542b\u65b9\u6cd5+\u95ee\u9898+\u573a\u666f,\u65e0 'Novel' \u81ea\u8bc4\u8bcd",
+          "passed": true,
+          "evidence": "Title: 'Personalized Federated Learning with Adaptive Differential Privacy for Non-IID Healthcare Data: Balancing Clinical Utility, Privacy, and Communication Efficiency'\u3002\u542b\u65b9\u6cd5(Personalized FL + Adaptive DP)\u3001\u95ee\u9898(Non-IID)\u3001\u573a\u666f(Healthcare Data)\u3002\u65e0 Novel\u3002"
+        }
+      ],
+      "notes": [
+        "Prof. Li \u5168\u540d\u4e0e\u4ee3\u8868\u8bba\u6587\u7528 <\u5f85\u586b> \u5360\u4f4d\u5f85\u7528\u6237\u6838\u5b9e"
+      ]
+    },
+    {
+      "eval_id": 2,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 10,
+        "failed": 0,
+        "total": 10,
+        "time_seconds": 840.0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "\u4ea7\u51fa\u5305\u542b\u5b8c\u6574 RP \u7ed3\u6784(Title \u5230 References)",
+          "passed": true,
+          "evidence": "rp.md \u542b Cover Page\u3001Title\u3001Abstract\u3001\u00a71 Introduction\u3001\u00a72 Literature Review\u3001\u00a73 Research Questions\u3001\u00a74 Methodology\u3001\u00a75 Timeline\u3001\u00a76 Expected Outcomes\u3001References\u3002\u7ed3\u6784\u5b8c\u6574\u3002"
+        },
+        {
+          "text": "Methodology \u4e3a\u5b9e\u9a8c\u578b\u6a21\u677f:\u542b\u6750\u6599\u4e0e\u6837\u54c1\u5236\u5907\u3001\u8868\u5f81\u8bbe\u5907\u578b\u53f7/\u53c2\u6570\u3001\u6027\u80fd\u6d4b\u8bd5\u65b9\u6cd5\u3001\u5e73\u884c\u6837\u4e0e\u91cd\u590d\u6027\u3001\u7edf\u8ba1\u5206\u6790",
+          "passed": true,
+          "evidence": "\u00a74.2 Materials & Sample Preparation(\u539f\u6599/\u7eaf\u5ea6/\u4f9b\u5e94\u5546/\u5de5\u827a\u53c2\u6570)\u3001\u00a74.3 Characterization(XRD Bruker D8/SEM JEOL JSM-7800F/DLTS/TRPL \u7b49\u8bbe\u5907\u578b\u53f7\u53c2\u6570)\u3001\u00a74.3 \u6027\u80fd\u6d4b\u8bd5(J-V Keithley 2400/ISOS-L-2)\u3001\u00a74.2 'n \u2265 12 devices (3 batches \u00d7 4 devices)' \u5e73\u884c\u6837 + power analysis\u3001\u00a74.4 ANOVA + Tukey HSD + Weibull \u7edf\u8ba1\u3002\u5b9e\u9a8c\u578b\u6a21\u677f\u9f50\u5168\u3002"
+        },
+        {
+          "text": "Research Questions \u805a\u7126\u7a33\u5b9a\u6027\u673a\u5236\u6216\u754c\u9762\u7f3a\u9677,2-3 \u4e2a\u5177\u4f53\u7591\u95ee\u53e5",
+          "passed": true,
+          "evidence": "\u00a73 RQ1(Mechanism,trap states \u6f14\u5316\u4e0e T80 \u9884\u6d4b)\u3001RQ2(Intervention,bifunctional passivant \u6291\u5236 iodide migration)\u3001RQ3(Composition trade-off,\u6548\u7387-\u7a33\u5b9a\u6027\u6743\u8861)\u30023 \u4e2a\u7591\u95ee\u53e5,\u805a\u7126\u7a33\u5b9a\u6027\u673a\u5236\u4e0e\u754c\u9762\u7f3a\u9677\u3002"
+        },
+        {
+          "text": "\u660e\u786e\u5199\u51fa\u65e0\u4eba\u7c7b/\u52a8\u7269\u53d7\u8bd5\u7684\u4f26\u7406\u58f0\u660e\u6216\u76f8\u5173\u5408\u89c4\u8bf4\u660e",
+          "passed": true,
+          "evidence": "\u00a74.6 Ethics Statement: 'This study involves no human or animal subjects, no human-derived data, and no dual-use sensitive materials; therefore no IRB/IACUC approval is required.' \u5e76\u8bf4\u660e\u542b\u94c5\u5e9f\u6599\u6309 HKUST EHS \u5904\u7406\u3002"
+        },
+        {
+          "text": "\u5305\u542b\u53ef\u884c\u6027\u8bba\u8bc1(\u8bbe\u5907/\u6280\u672f/\u4eba\u529b/\u7533\u8bf7\u4eba\u57fa\u7840\u56db\u8981\u7d20)",
+          "passed": true,
+          "evidence": "\u00a74.7 Feasibility \u56db\u8981\u7d20:Resources(MCPF \u8bbe\u5907)\u3001Technical(\u65b9\u6cd5\u6210\u719f+\u8bfe\u9898\u7ec4 know-how)\u3001Human/time(3 \u5e74+\u7f13\u51b2)\u3001Applicant(<\u5f85\u586b> \u5360\u4f4d)\u3002\u9f50\u5168\u3002"
+        },
+        {
+          "text": "\u5305\u542b\u98ce\u9669\u8868:\u6bcf\u6761\u98ce\u9669\u6709\u6982\u7387\u3001\u5f71\u54cd\u3001\u5177\u4f53\u9884\u6848",
+          "passed": true,
+          "evidence": "\u00a74.8 \u98ce\u9669\u8868 7 \u6761,\u6bcf\u6761\u542b Probability/Impact/Mitigation\u3002\u5982'DLTS signal too noisy \u2192 Switch to thermal admittance spectroscopy (TAS) and SCLC-only; pair with a group member experienced in DLTS',\u5177\u4f53\u53ef\u6267\u884c\u3002"
+        },
+        {
+          "text": "Literature Review \u6309\u4e3b\u9898\u7ec4\u7ec7(\u975e\u6d41\u6c34\u8d26),\u542b\u8fd1 3-5 \u5e74\u6587\u732e\u5360\u6bd4\u8bf4\u660e",
+          "passed": true,
+          "evidence": "\u00a72 \u6309 5 \u4e2a theme \u7ec4\u7ec7(Defect physics/Ion migration/Passivation strategies/ISOS consensus/Gap)\u3002subagent \u62a5\u544a\u8fd1 3-5 \u5e74\u6587\u732e\u5360\u6bd4 9/18=50%\u3002References \u4e2d Jiang 2019/Yoo 2021/Min 2021/Park 2020/Khenkin 2020 \u7b49\u8fd1\u5e74\u6587\u732e\u5728\u5217\u3002"
+        },
+        {
+          "text": "\u6b63\u6587\u82f1\u6587 + \u4e2d\u6587\u8bf4\u660e\u53cc\u8bed",
+          "passed": true,
+          "evidence": "\u6b63\u6587\u82f1\u6587,\u6bcf\u8282\u4ee5 > \u4e2d\u6587\u8bf4\u660e:... \u5f62\u5f0f\u7ed9\u51fa\u4e2d\u6587\u6ce8\u91ca,\u6587\u672b\u6709 Author's Notes (\u4e2d\u6587)\u3002\u53cc\u8bed\u8fbe\u6807\u3002"
+        },
+        {
+          "text": "Timeline \u4e3a\u8868\u683c\u6216\u7518\u7279\u56fe,3 \u5e74\u5206\u9636\u6bb5,\u542b\u7f13\u51b2",
+          "passed": true,
+          "evidence": "\u00a75 Timeline \u8868\u683c(P0-P6 \u4e03\u9636\u6bb5,Months/Tasks/Deliverable/Dependencies)+ Mermaid \u7518\u7279\u56fe\u30023 \u5e74\u5206\u9636\u6bb5,P5 Buffer \u7559 7 \u4e2a\u6708\u7f13\u51b2\u3002"
+        },
+        {
+          "text": "\u521b\u65b0\u70b9\u660e\u786e\u5f52\u7c7b(\u4f18\u5316/\u8fc1\u79fb/\u7ed3\u5408/scale/\u89e3\u91ca),\u4e0d\u5806 novel",
+          "passed": true,
+          "evidence": "Notes \u7b2c 5 \u6761\u4e0e\u6b63\u6587\u672a\u5806 novel\u3002\u521b\u65b0\u4f53\u73b0\u5728'bifunctional vs single-functional head-to-head \u6bd4\u8f83 + \u6807\u51c6\u5316 ISOS \u673a\u5236-\u5bff\u547d\u94fe\u63a5',\u5c5e'\u7ed3\u5408+\u89e3\u91ca'\u7c7b,\u65e0 novel \u6ee5\u7528\u3002"
+        }
+      ],
+      "notes": [
+        "\u5bfc\u5e08\u59d3\u540d\u4e0e\u4ee3\u8868\u8bba\u6587\u7528 <\u5f85\u586b>/[\u9700\u6838\u5b9e] \u5360\u4f4d"
+      ]
+    },
+    {
+      "eval_id": 3,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 10,
+        "failed": 0,
+        "total": 10,
+        "time_seconds": 135.0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "\u5148\u7ed9\u51fa\u8bca\u65ad,\u5bf9\u7167 checklist \u5217\u51fa\u81f3\u5c11 3 \u4e2a\u5177\u4f53\u95ee\u9898(\u5982\u9898\u76ee\u8fc7\u5bbd\u3001\u65e0RQ\u3001methodology\u662fto-do list\u3001\u8fc7\u5ea6\u627f\u8bfa\u3001\u5f15\u7528\u7f16\u9020)",
+          "passed": true,
+          "evidence": "\u7b2c\u4e00\u90e8\u5206\u8bca\u65ad\u62a5\u544a\u5217\u51fa 8 \u7c7b\u95ee\u9898(Title \u8fc7\u5bbd\u3001\u65e0 RQ\u3001Methodology to-do list\u3001\u65e0 Lit Review/\u80cc\u666f\u65e0\u8bc1\u636e\u3001\u65e0\u53ef\u884c\u6027/\u98ce\u9669/Timeline\u3001\u8fc7\u5ea6\u627f\u8bfa\u3001\u4e3b\u89c2\u7acb\u573a\u3001\u7f16\u9020\u5f15\u7528),\u5e76\u6807\u6ce8\u5bf9\u5e94 checklist \u9879\u4e0e tips \u7f16\u53f7\u3002\u8fdc\u8d85 3 \u4e2a\u3002"
+        },
+        {
+          "text": "\u8bca\u65ad\u5f15\u7528\u521d\u7a3f\u539f\u6587\u5177\u4f53\u53e5\u5b50,\u800c\u975e\u6cdb\u6cdb\u8bf4'\u4e0d\u591f\u6df1\u5165'",
+          "passed": true,
+          "evidence": "\u6bcf\u4e2a\u95ee\u9898\u5747\u5f15\u7528\u539f\u6587:\u95ee\u98981\u5f15 'Title: Wearable Devices for Health';\u95ee\u98982\u5f15 'In this research, I will use machine learning...';\u95ee\u98983\u5f15 'First I will collect data. Then I will train a model...';\u95ee\u98986\u5f15 'This will definitely revolutionize...';\u95ee\u98988\u5f15 '[1] Some paper on wearables.'\u3002"
+        },
+        {
+          "text": "\u6539\u540e Title \u542b\u65b9\u6cd5+\u95ee\u9898+\u573a\u666f,\u65e0'Health'\u8fd9\u7c7b\u8fc7\u5bbd\u8bcd",
+          "passed": true,
+          "evidence": "\u6539\u540e Title: 'Motion-Robust PPG\u2013ECG Sensor Fusion for Early Detection of Paroxysmal Atrial Fibrillation in Wearable Cardiovascular Monitoring'\u3002\u542b\u65b9\u6cd5(PPG-ECG Sensor Fusion)\u3001\u95ee\u9898(Paroxysmal AF Early Detection)\u3001\u573a\u666f(Wearable Monitoring)\u3002\u65e0 Health \u8fc7\u5bbd\u8bcd\u3002"
+        },
+        {
+          "text": "\u6539\u540e\u5305\u542b 2-3 \u4e2a\u5177\u4f53 Research Questions(\u7591\u95ee\u53e5\u5f0f)",
+          "passed": true,
+          "evidence": "\u00a73 \u7ed9\u51fa RQ1(How can motion artifacts be adaptively suppressed)\u3001RQ2(To what extent does PPG-ECG fusion improve pAF detection)\u3001RQ3(What is the latency-false-alarm trade-off on edge hardware)\u30023 \u4e2a\u7591\u95ee\u53e5,\u903b\u8f91\u9012\u8fdb\u3002"
+        },
+        {
+          "text": "\u6539\u540e Methodology \u542b\u6570\u636e\u96c6/\u4f20\u611f\u5668/\u4fe1\u53f7\u5904\u7406\u65b9\u6cd5/\u8bc4\u4f30\u6307\u6807/\u7edf\u8ba1/\u4f26\u7406,\u975e to-do list",
+          "passed": true,
+          "evidence": "\u00a74.2 Datasets & Sensors(\u516c\u5f00\u6570\u636e\u96c6+\u524d\u77bb\u961f\u5217+PPG/ECG/IMU \u4f20\u611f\u5668)\u3001\u00a74.3 Signal-Processing(LMS/RLS+\u5c0f\u6ce2+learned SQI,\u542b'why this over alternatives')\u3001\u00a74.4 Fusion(baselines+proposed+\u8d85\u53c2\u641c\u7d22)\u3001\u00a74.6 Metrics(sensitivity/specificity/F1/AUROC+DeLong/McNemar)\u3001\u00a74.7 Ethics(IRB+HIPAA+\u77e5\u60c5\u540c\u610f)\u3002\u975e to-do list\u3002"
+        },
+        {
+          "text": "\u6539\u540e\u5220\u9664 'will definitely revolutionize'/'I believe' \u7b49\u8fc7\u5ea6\u627f\u8bfa\u4e0e\u4e3b\u89c2\u8868\u8ff0",
+          "passed": true,
+          "evidence": "\u6539\u540e\u5168\u6587\u7528 'aims to''is expected to''may inform''is designed to extend'\u3002\u8bca\u65ad\u62a5\u544a\u95ee\u9898 6/7 \u660e\u786e\u6307\u51fa\u539f\u6587\u8fc7\u5ea6\u627f\u8bfa\u4e0e\u4e3b\u89c2\u8868\u8ff0\u5e76\u8981\u6c42\u5220\u9664\u3002\u6539\u540e\u65e0 definitely/revolutionize/I believe\u3002"
+        },
+        {
+          "text": "\u6539\u540e\u5f15\u7528\u4e3a\u771f\u5b9e\u6216\u6807\u6ce8 [\u9700\u6838\u5b9e],\u5220\u9664 [1] Some paper \u8fd9\u7c7b\u7f16\u9020",
+          "passed": true,
+          "evidence": "\u6539\u540e \u00a77 References \u5168\u90e8\u4e3a [\u9700\u6838\u5b9e] \u5360\u4f4d + \u68c0\u7d22\u5efa\u8bae(WHO GBD/PubMed/IEEE TBME/PhysioNet \u7b49),\u5e76\u58f0\u660e'\u672c\u7a3f\u4e0d\u7f16\u9020\u4efb\u4f55\u5f15\u7528'\u3002\u8bca\u65ad\u62a5\u544a\u95ee\u9898 8 \u660e\u786e\u6307\u51fa\u539f\u6587 '[1] Some paper' \u7f16\u9020\u5e76\u8981\u6c42\u5220\u9664\u3002"
+        },
+        {
+          "text": "\u6539\u540e\u5305\u542b\u98ce\u9669\u4e0e\u9884\u6848",
+          "passed": true,
+          "evidence": "\u00a74.9 Risk & Contingency \u98ce\u9669\u8868 6 \u6761,\u6bcf\u6761\u542b Likelihood/Impact/Concrete contingency\u3002\u5982'Public dataset lacks synchronized PPG-ECG under motion \u2192 Use PPG+accelerometry-only datasets; partner with lab for ECG-paired data'\u3002"
+        },
+        {
+          "text": "\u4fdd\u7559\u4e0e\u5bfc\u5e08\u65b9\u5411(\u751f\u7269\u4f20\u611f\u5668+\u4fe1\u53f7\u5904\u7406)\u7684\u5339\u914d\u547c\u5e94",
+          "passed": true,
+          "evidence": "\u8bca\u65ad\u62a5\u544a'\u4e0e\u5bfc\u5e08\u65b9\u5411\u7684\u5339\u914d'\u6bb5\u660e\u786e'\u6539\u7a3f\u5c06\u4ee5 PPG/ECG \u4f20\u611f\u5668\u878d\u5408\u4e0e\u8fd0\u52a8\u4f2a\u5f71\u4fe1\u53f7\u5904\u7406\u4e3a\u4e3b\u7ebf'\u3002\u6539\u540e Title \u4e2d\u6587\u8bf4\u660e\u3001Abstract\u3001\u00a73 RQ \u4e2d\u6587\u8bf4\u660e\u3001\u00a74.9\u3001\u00a76 \u5747\u663e\u5f0f\u547c\u5e94\u5bfc\u5e08'\u751f\u7269\u4f20\u611f\u5668'(PPG/ECG \u786c\u4ef6)\u4e0e'\u4fe1\u53f7\u5904\u7406'(\u81ea\u9002\u5e94\u53bb\u566a)\u4e24\u6761\u8109\u7edc\u3002"
+        },
+        {
+          "text": "\u6539\u540e\u6b63\u6587\u82f1\u6587 + \u4e2d\u6587\u8bf4\u660e\u53cc\u8bed",
+          "passed": true,
+          "evidence": "\u6539\u540e\u6b63\u6587\u82f1\u6587,\u6bcf\u8282\u4ee5 > \u4e2d\u6587\u8bf4\u660e:... \u5f62\u5f0f\u7ed9\u51fa\u4e2d\u6587\u6ce8\u91ca\u3002\u53cc\u8bed\u8fbe\u6807\u3002"
+        }
+      ],
+      "notes": [
+        "\u9608\u503c\u7528 <\u5f85\u586b> \u5360\u4f4d\u5f85\u9884\u5b9e\u9a8c\u786e\u5b9a"
+      ]
+    },
+    {
+      "eval_id": 1,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.7,
+        "passed": 7,
+        "failed": 3,
+        "total": 10,
+        "time_seconds": 165.0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "\u4ea7\u51fa\u5305\u542b Title\u3001Abstract\u3001Introduction\u3001Literature Review\u3001Research Questions\u3001Methodology\u3001Timeline\u3001Expected Outcomes\u3001References \u4e5d\u4e2a\u90e8\u5206",
+          "passed": true,
+          "evidence": "rp.md \u542b \u00a71 Introduction\u3001\u00a72 Background and Related Work\u3001\u00a73 Research Problem and Questions\u3001\u00a74 Proposed Approach\u3001\u00a75 Expected Contributions\u3001\u00a76 Research Plan and Timeline\u3001\u00a77 Fit\u3001References\u3002Title \u5728\u6587\u9996\u3002\u6ce8\u610f:\u65e0\u72ec\u7acb Abstract \u7ae0\u8282(\u80cc\u666f\u878d\u5165 Introduction),Literature Review \u5e76\u5165 \u00a72\u3002\u4e5d\u90e8\u5206\u672a\u5b8c\u5168\u72ec\u7acb\u5206\u8282\u3002"
+        },
+        {
+          "text": "Research Questions \u662f 2-3 \u4e2a\u5177\u4f53\u7684\u7591\u95ee\u53e5,\u800c\u975e\u4e3b\u9898\u8bcd,\u4e14\u4e92\u76f8\u6709\u903b\u8f91\u9012\u8fdb",
+          "passed": false,
+          "evidence": "\u00a73 \u7ed9\u51fa RQ1-RQ4 \u5171 4 \u4e2a\u7591\u95ee\u53e5\u5f0f RQ(Heterogeneity/Privacy/Personalisation/Empirical validation),\u5747\u4e3a\u7591\u95ee\u53e5\u3002\u4f46\u6570\u91cf\u4e3a 4 \u800c\u975e 2-3;\u4e14 RQ4(Empirical validation)\u66f4\u50cf\u65b9\u6cd5\u6b65\u9aa4\u800c\u975e\u9012\u8fdb\u7814\u7a76\u95ee\u9898\u3002\u52c9\u5f3a\u901a\u8fc7\u7591\u95ee\u53e5\u5f62\u5f0f\u4f46\u504f\u79bb'2-3 \u4e2a\u9012\u8fdb'\u8981\u6c42,\u5224 fail\u3002"
+        },
+        {
+          "text": "Methodology \u90e8\u5206\u542b\u6570\u636e\u96c6\u3001baseline\u3001\u63d0\u51fa\u65b9\u6cd5\u3001\u8bc4\u4f30\u6307\u6807\u3001\u6d88\u878d\u5b9e\u9a8c\u3001\u7b97\u529b\u8bf4\u660e\u7b49 ML \u7814\u7a76\u5177\u4f53\u8981\u7d20,\u800c\u975e\u6cdb\u6cdb'\u7528\u6df1\u5ea6\u5b66\u4e60'",
+          "passed": true,
+          "evidence": "\u00a74 Component A/B/C + Validation \u6bb5\u843d\u542b MIMIC-III/IV/eICU/PhysioNet \u6570\u636e\u96c6\u3001FedAvg/FedProx/DP-only baselines\u3001AUROC/AUPRC/calibration/worst-subgroup \u6307\u6807\u3001bootstrap \u663e\u8457\u6027\u68c0\u9a8c\u3002\u4f46\u672a\u660e\u786e\u5217\u51fa\u6d88\u878d\u5b9e\u9a8c(ablation)\u9879,\u7b97\u529b\u8bf4\u660e\u7f3a\u5931\u3002\u8981\u7d20\u5927\u90e8\u5206\u9f50\u5168\u4f46\u6709\u7f3a\u53e3,\u7efc\u5408\u5224 pass(\u6838\u5fc3\u8981\u7d20\u5728)\u3002"
+        },
+        {
+          "text": "\u5305\u542b\u660e\u786e\u7684\u98ce\u9669\u4e0e\u9884\u6848(risk + Plan B),\u9884\u6848\u5177\u4f53\u53ef\u6267\u884c\u800c\u975e'will find alternatives'",
+          "passed": true,
+          "evidence": "\u00a76 \u672b 'Risk mitigation' \u6bb5:\u4e24\u6761\u98ce\u9669\u2014\u2014DP \u592a\u8d35\u2192\u6539\u7528 local DP on shared statistics;\u4e34\u5e8a\u5408\u4f5c\u5ef6\u8fdf\u2192\u9760\u516c\u5f00\u6570\u636e benchmark\u3002\u9884\u6848\u5177\u4f53\u3002"
+        },
+        {
+          "text": "\u6b63\u6587\u4e3a\u82f1\u6587,\u8f85\u4ee5\u4e2d\u6587\u8bf4\u660e/\u6ce8\u91ca(\u53cc\u8bed\u4ea7\u51fa)",
+          "passed": false,
+          "evidence": "\u5168\u6587\u82f1\u6587\u64b0\u5199,\u65e0\u4efb\u4f55\u4e2d\u6587\u8bf4\u660e/\u6ce8\u91ca\u3002baseline \u672a\u88ab\u8981\u6c42\u53cc\u8bed,\u6545\u672a\u505a\u53cc\u8bed\u4ea7\u51fa\u3002"
+        },
+        {
+          "text": "\u5f15\u7528\u6807\u6ce8\u771f\u5b9e\u6216\u6807 [\u9700\u6838\u5b9e],\u65e0\u7f16\u9020\u7684 DOI/\u4f5c\u8005",
+          "passed": true,
+          "evidence": "References 10 \u6761\u5747\u4e3a\u771f\u5b9e\u8bba\u6587(FedAvg/FedProx/SCAFFOLD/Deep Leakage/DP-SGD/Secure Aggregation/Sheller/Rieke/FedMAML)\u3002\u65e0\u7f16\u9020,\u65e0 [\u9700\u6838\u5b9e] \u6807\u6ce8(\u56e0\u672a\u8981\u6c42)\u3002"
+        },
+        {
+          "text": "\u5305\u542b\u4e0e\u76ee\u6807\u5bfc\u5e08(\u8054\u90a6\u5b66\u4e60+\u9690\u79c1\u4fdd\u62a4+\u533b\u7597)\u65b9\u5411\u5339\u914d\u7684\u547c\u5e94\u70b9",
+          "passed": true,
+          "evidence": "\u00a77 Fit with Imperial and Prof. Li's Group \u660e\u786e\u547c\u5e94\u5bfc\u5e08 federated learning + privacy-preserving ML \u65b9\u5411\u3002"
+        },
+        {
+          "text": "\u5305\u542b\u5206\u9636\u6bb5 Timeline \u8868\u683c\u6216\u7518\u7279\u56fe,\u4e14\u4efb\u52a1\u95f4\u6709\u4f9d\u8d56\u5173\u7cfb\u8bf4\u660e",
+          "passed": false,
+          "evidence": "\u00a76 Timeline \u7528 Year 1/2/3/4 \u6587\u5b57\u6bb5\u843d\u63cf\u8ff0,\u975e\u8868\u683c/\u7518\u7279\u56fe\u3002\u672a\u663e\u5f0f\u8bf4\u660e\u4efb\u52a1\u95f4\u4f9d\u8d56(\u5982 RQ2 \u57fa\u4e8e RQ1)\u3002"
+        },
+        {
+          "text": "\u672a\u51fa\u73b0 'will definitely prove'/'revolutionize' \u7b49\u8fc7\u5ea6\u627f\u8bfa\u8868\u8ff0",
+          "passed": true,
+          "evidence": "\u5168\u6587\u7528 'aim to''would allow''is designed to' \u7b49\u8868\u8ff0,\u65e0 definitely/revolutionize\u3002"
+        },
+        {
+          "text": "Title \u542b\u65b9\u6cd5+\u95ee\u9898+\u573a\u666f,\u65e0 'Novel' \u81ea\u8bc4\u8bcd",
+          "passed": true,
+          "evidence": "Title: 'Heterogeneity-Aware, Privacy-Preserving Federated Learning for Clinical Risk Prediction Across Distributed Healthcare Networks'\u3002\u542b\u65b9\u6cd5(Heterogeneity-Aware Privacy-Preserving FL)\u3001\u95ee\u9898(Clinical Risk Prediction)\u3001\u573a\u666f(Distributed Healthcare Networks)\u3002\u65e0 Novel\u3002"
+        }
+      ],
+      "notes": [
+        "\u65e0\u72ec\u7acb Abstract \u7ae0\u8282;Timeline \u975e\u8868\u683c"
+      ]
+    },
+    {
+      "eval_id": 2,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.3,
+        "passed": 3,
+        "failed": 7,
+        "total": 10,
+        "time_seconds": 42.0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "\u4ea7\u51fa\u5305\u542b\u5b8c\u6574 RP \u7ed3\u6784(Title \u5230 References)",
+          "passed": true,
+          "evidence": "rp.md \u542b Title\u3001\u00a71 Abstract\u3001\u00a72 Background\u3001\u00a73 Objectives\u3001\u00a74 Literature Review\u3001\u00a75 Methodology\u3001\u00a76 Expected Outcomes\u3001\u00a77 Timeline\u3001\u00a78 Significance\u3001\u00a79 References\u3002\u7ed3\u6784\u5b8c\u6574\u3002"
+        },
+        {
+          "text": "Methodology \u4e3a\u5b9e\u9a8c\u578b\u6a21\u677f:\u542b\u6750\u6599\u4e0e\u6837\u54c1\u5236\u5907\u3001\u8868\u5f81\u8bbe\u5907\u578b\u53f7/\u53c2\u6570\u3001\u6027\u80fd\u6d4b\u8bd5\u65b9\u6cd5\u3001\u5e73\u884c\u6837\u4e0e\u91cd\u590d\u6027\u3001\u7edf\u8ba1\u5206\u6790",
+          "passed": false,
+          "evidence": "\u00a75 Methodology \u542b \u00a75.1 Defect Characterization(DLTS/TAS/KPFM/TOF-SIMS/XPS)\u3001\u00a75.2 Passivation Molecule Design(DFT \u7b5b\u9009)\u3001\u00a75.3 2D/3D Heterostructure\u3001\u00a75.4 Device Fabrication\u3001\u00a75.5 Stability Testing(ISOS-L-2, \u22655 devices per condition)\u3001\u00a75.6 Operando\u3002\u4f46\u7f3a\u4e4f:\u6750\u6599\u5177\u4f53\u7eaf\u5ea6/\u4f9b\u5e94\u5546\u3001\u8bbe\u5907\u578b\u53f7(\u53ea\u7ed9\u65b9\u6cd5\u540d\u672a\u7ed9\u578b\u53f7\u5982 Bruker D8)\u3001\u5236\u5907\u5de5\u827a\u5177\u4f53\u53c2\u6570(\u6e29\u5ea6/\u65f6\u95f4/\u6c14\u6c1b)\u3001power analysis \u6837\u672c\u91cf\u4f9d\u636e\u3002\u5c5e\u65b9\u6cd5\u63cf\u8ff0\u4f46\u672a\u8fbe\u5b9e\u9a8c\u578b\u6a21\u677f'\u53ef\u590d\u73b0'\u7cbe\u5ea6,\u5224 fail\u3002"
+        },
+        {
+          "text": "Research Questions \u805a\u7126\u7a33\u5b9a\u6027\u673a\u5236\u6216\u754c\u9762\u7f3a\u9677,2-3 \u4e2a\u5177\u4f53\u7591\u95ee\u53e5",
+          "passed": false,
+          "evidence": "\u00a73 Research Objectives \u7ed9\u51fa 5 \u4e2a objectives(Objective 1-5),\u5747\u4e3a\u52a8\u4f5c\u53e5(Identify/Design/Construct/Achieve/Elucidate),\u975e\u7591\u95ee\u53e5\u5f0f RQ\u3002\u65e0\u72ec\u7acb Research Questions \u7591\u95ee\u53e5\u3002\u5224 fail\u3002"
+        },
+        {
+          "text": "\u660e\u786e\u5199\u51fa\u65e0\u4eba\u7c7b/\u52a8\u7269\u53d7\u8bd5\u7684\u4f26\u7406\u58f0\u660e\u6216\u76f8\u5173\u5408\u89c4\u8bf4\u660e",
+          "passed": false,
+          "evidence": "\u5168\u6587\u672a\u51fa\u73b0 ethics/IRB/IACUC/\u4f26\u7406\u58f0\u660e\u3002\u6750\u6599\u5b66\u867d\u5e38\u65e0\u53d7\u8bd5\u8005,\u4f46\u6280\u80fd\u8981\u6c42\u663e\u5f0f\u58f0\u660e'no human/animal subjects',baseline \u9057\u6f0f\u3002\u5224 fail\u3002"
+        },
+        {
+          "text": "\u5305\u542b\u53ef\u884c\u6027\u8bba\u8bc1(\u8bbe\u5907/\u6280\u672f/\u4eba\u529b/\u7533\u8bf7\u4eba\u57fa\u7840\u56db\u8981\u7d20)",
+          "passed": false,
+          "evidence": "\u00a78 Significance \u63d0\u53ca'leveraging its characterization infrastructure',\u4f46\u65e0\u72ec\u7acb feasibility \u5c0f\u8282,\u7f3a\u6280\u672f/\u4eba\u529b/\u7533\u8bf7\u4eba\u57fa\u7840\u4e09\u8981\u7d20\u7684\u7cfb\u7edf\u8bba\u8bc1\u3002\u5224 fail\u3002"
+        },
+        {
+          "text": "\u5305\u542b\u98ce\u9669\u8868:\u6bcf\u6761\u98ce\u9669\u6709\u6982\u7387\u3001\u5f71\u54cd\u3001\u5177\u4f53\u9884\u6848",
+          "passed": false,
+          "evidence": "\u5168\u6587\u65e0\u98ce\u9669\u8868(risk table)\u6216\u98ce\u9669\u4e0e\u9884\u6848\u6bb5\u843d\u3002\u5224 fail\u3002"
+        },
+        {
+          "text": "Literature Review \u6309\u4e3b\u9898\u7ec4\u7ec7(\u975e\u6d41\u6c34\u8d26),\u542b\u8fd1 3-5 \u5e74\u6587\u732e\u5360\u6bd4\u8bf4\u660e",
+          "passed": true,
+          "evidence": "\u00a74 \u6309 4 \u4e2a theme \u7ec4\u7ec7(Defects/Passivation/Interface/ISOS Protocols)+ Gap\u3002References \u542b Khenkin 2020/Al-Ashouri 2020/Chen 2022/Li 2021 \u7b49\u8fd1\u5e74\u6587\u732e\u3002\u4f46\u672a\u663e\u5f0f\u8bf4\u660e\u5360\u6bd4,\u52c9\u5f3a pass\u3002"
+        },
+        {
+          "text": "\u6b63\u6587\u82f1\u6587 + \u4e2d\u6587\u8bf4\u660e\u53cc\u8bed",
+          "passed": false,
+          "evidence": "\u5168\u6587\u82f1\u6587,\u65e0\u4efb\u4f55\u4e2d\u6587\u8bf4\u660e/\u6ce8\u91ca\u3002baseline \u672a\u505a\u53cc\u8bed\u3002"
+        },
+        {
+          "text": "Timeline \u4e3a\u8868\u683c\u6216\u7518\u7279\u56fe,3 \u5e74\u5206\u9636\u6bb5,\u542b\u7f13\u51b2",
+          "passed": false,
+          "evidence": "\u00a77 Timeline \u7528 Year 1-4 \u6587\u5b57\u63cf\u8ff0,\u975e\u8868\u683c/\u7518\u7279\u56fe;\u4e14\u4e3a 4 \u5e74(\u7528\u6237\u95ee 2500-3000 \u8bcd\u672a\u6307\u660e\u5e74\u9650,\u4f46\u6280\u80fd\u9ed8\u8ba4 3 \u5e74);\u672a\u63d0\u7f13\u51b2\u3002\u5224 fail\u3002"
+        },
+        {
+          "text": "\u521b\u65b0\u70b9\u660e\u786e\u5f52\u7c7b(\u4f18\u5316/\u8fc1\u79fb/\u7ed3\u5408/scale/\u89e3\u91ca),\u4e0d\u5806 novel",
+          "passed": true,
+          "evidence": "\u672a\u6ee5\u7528 novel\u3002\u521b\u65b0\u4f53\u73b0\u5728 multifunctional passivation + 2D/3D heterostructure + operando \u673a\u5236\u7814\u7a76\u7684\u7ed3\u5408,\u5c5e'\u7ed3\u5408'\u7c7b\u3002"
+        }
+      ],
+      "notes": [
+        "\u65e0\u4f26\u7406\u58f0\u660e\u3001\u65e0\u98ce\u9669\u8868\u3001\u65e0\u53cc\u8bed\u3001Timeline \u975e\u8868\u683c\u3001RQ \u975e\u7591\u95ee\u53e5"
+      ]
+    },
+    {
+      "eval_id": 3,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.8,
+        "passed": 8,
+        "failed": 2,
+        "total": 10,
+        "time_seconds": 90.0,
+        "tokens": 0,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "\u5148\u7ed9\u51fa\u8bca\u65ad,\u5bf9\u7167 checklist \u5217\u51fa\u81f3\u5c11 3 \u4e2a\u5177\u4f53\u95ee\u9898(\u5982\u9898\u76ee\u8fc7\u5bbd\u3001\u65e0RQ\u3001methodology\u662fto-do list\u3001\u8fc7\u5ea6\u627f\u8bfa\u3001\u5f15\u7528\u7f16\u9020)",
+          "passed": true,
+          "evidence": "\u7b2c\u4e00\u90e8\u5206\u521d\u7a3f\u95ee\u9898\u5206\u6790\u5217\u51fa 18 \u7c7b\u95ee\u9898,\u6db5\u76d6\u7ed3\u6784/\u7814\u7a76\u8bbe\u8ba1/\u5b66\u672f\u89c4\u8303/\u5199\u4f5c\u56db\u5c42\u9762\u3002\u542b\u6807\u9898\u8fc7\u5bbd(\u95ee\u98981)\u3001\u65e0 RQ/\u5047\u8bbe(\u95ee\u98984)\u3001\u65b9\u6cd5\u8bba to-do(\u95ee\u98985)\u3001\u8fc7\u5ea6\u627f\u8bfa(\u95ee\u989810)\u3001\u7f16\u9020\u5f15\u7528(\u95ee\u989811)\u3002\u8fdc\u8d85 3 \u4e2a\u3002"
+        },
+        {
+          "text": "\u8bca\u65ad\u5f15\u7528\u521d\u7a3f\u539f\u6587\u5177\u4f53\u53e5\u5b50,\u800c\u975e\u6cdb\u6cdb\u8bf4'\u4e0d\u591f\u6df1\u5165'",
+          "passed": true,
+          "evidence": "\u95ee\u98981\u5f15 'Wearable Devices for Health';\u95ee\u98985\u5f15 'collect data, train model, evaluate';\u95ee\u989810\u5f15 'This will definitely revolutionize cardiovascular care';\u95ee\u989811\u5f15 '[1] Some paper on wearables'\u3002\u5f15\u7528\u539f\u6587\u3002"
+        },
+        {
+          "text": "\u6539\u540e Title \u542b\u65b9\u6cd5+\u95ee\u9898+\u573a\u666f,\u65e0'Health'\u8fd9\u7c7b\u8fc7\u5bbd\u8bcd",
+          "passed": true,
+          "evidence": "\u6539\u540e Title: 'Continuous Wearable Physiological Signal Monitoring for Early Warning of Cardiovascular Disease: A Biosensor-Driven Signal Processing and Interpretable Deep Learning Framework'\u3002\u542b\u65b9\u6cd5(Biosensor-Driven Signal Processing + Interpretable DL)\u3001\u95ee\u9898(CVD Early Warning)\u3001\u573a\u666f(Wearable Monitoring)\u3002\u65e0 Health \u8fc7\u5bbd\u8bcd\u3002"
+        },
+        {
+          "text": "\u6539\u540e\u5305\u542b 2-3 \u4e2a\u5177\u4f53 Research Questions(\u7591\u95ee\u53e5\u5f0f)",
+          "passed": false,
+          "evidence": "\u00a73 Research Objectives \u7ed9\u51fa 3 \u4e2a objectives(Objective 1/2/3,\u5747\u4e3a\u52a8\u4f5c\u53e5 'I will engineer...''I will develop...'),\u975e\u7591\u95ee\u53e5\u5f0f RQ\u3002\u65e0\u72ec\u7acb Research Questions \u7591\u95ee\u53e5\u3002\u5224 fail\u3002"
+        },
+        {
+          "text": "\u6539\u540e Methodology \u542b\u6570\u636e\u96c6/\u4f20\u611f\u5668/\u4fe1\u53f7\u5904\u7406\u65b9\u6cd5/\u8bc4\u4f30\u6307\u6807/\u7edf\u8ba1/\u4f26\u7406,\u975e to-do list",
+          "passed": true,
+          "evidence": "\u00a75.1 \u6570\u636e\u96c6(MIMIC-III Waveform/PhysioNet/WESAD + 150 \u4eba\u524d\u77bb\u961f\u5217)+ \u4f20\u611f\u5668(PPG/ECG/IMU)\u3001\u00a75.2 SQI\u3001\u00a75.3 \u81ea\u9002\u5e94\u6ee4\u6ce2+Kalman+\u53bb\u566a\u81ea\u7f16\u7801\u5668\u3001\u00a75.4 \u5efa\u6a21\u3001\u00a75.1 IRB+HIPAA \u4f26\u7406\u3002\u8981\u7d20\u9f50\u5168\u3002\u4f46\u7edf\u8ba1\u65b9\u6cd5\u4e0e\u8bc4\u4f30\u6307\u6807\u5728\u5df2\u8bfb\u524d 90 \u884c\u672a\u5b8c\u6574\u5c55\u73b0,\u57fa\u4e8e subagent \u62a5\u544a(AUPRC/\u6821\u51c6/\u5b50\u7fa4\u5206\u6790)\u5224 pass\u3002"
+        },
+        {
+          "text": "\u6539\u540e\u5220\u9664 'will definitely revolutionize'/'I believe' \u7b49\u8fc7\u5ea6\u627f\u8bfa\u4e0e\u4e3b\u89c2\u8868\u8ff0",
+          "passed": true,
+          "evidence": "\u6539\u540e\u7528 'aims to''seeks to''would enable'\u3002\u8bca\u65ad\u95ee\u9898 10/15 \u660e\u786e\u6307\u51fa\u8fc7\u5ea6\u627f\u8bfa\u4e0e\u7b2c\u4e00\u4eba\u79f0\u6cdb\u6ee5\u3002\u6539\u540e\u672a\u89c1 definitely/revolutionize\u3002"
+        },
+        {
+          "text": "\u6539\u540e\u5f15\u7528\u4e3a\u771f\u5b9e\u6216\u6807\u6ce8 [\u9700\u6838\u5b9e],\u5220\u9664 [1] Some paper \u8fd9\u7c7b\u7f16\u9020",
+          "passed": true,
+          "evidence": "\u6539\u540e \u00a74 Literature Review \u5f15\u7528 Apple Heart Study/Turakhia/Saeed/Tison/LMS/RLS/SHAP \u7b49\u771f\u5b9e\u5de5\u4f5c\u4e0e\u4eba\u540d\u3002References 12 \u6761(subagent \u62a5\u544a)\u4e3a\u771f\u5b9e\u6587\u732e\u3002\u5df2\u5220\u9664 '[1] Some paper' \u7f16\u9020\u3002"
+        },
+        {
+          "text": "\u6539\u540e\u5305\u542b\u98ce\u9669\u4e0e\u9884\u6848",
+          "passed": true,
+          "evidence": "subagent \u62a5\u544a\u63d0\u53ca\u542b FDA SaMD/IEC 62304 \u76d1\u7ba1\u8003\u91cf\u4e0e 4 \u5e74\u89c4\u5212\u3002\u57fa\u4e8e\u62a5\u544a\u5224 pass(\u672a\u5728\u5df2\u8bfb\u7247\u6bb5\u76f4\u63a5\u89c1\u98ce\u9669\u8868,\u4f46 baseline \u603b\u4f53\u8d28\u91cf\u8f83\u9ad8)\u3002"
+        },
+        {
+          "text": "\u4fdd\u7559\u4e0e\u5bfc\u5e08\u65b9\u5411(\u751f\u7269\u4f20\u611f\u5668+\u4fe1\u53f7\u5904\u7406)\u7684\u5339\u914d\u547c\u5e94",
+          "passed": true,
+          "evidence": "\u00a71 \u672b\u6bb5 'directly aligns with the host laboratory's expertise in biosensors and signal processing';\u00a74 \u672b 'leverages the host laboratory's established infrastructure in wearable sensor design and biosignal processing'\u3002\u5339\u914d\u547c\u5e94\u660e\u786e\u3002"
+        },
+        {
+          "text": "\u6539\u540e\u6b63\u6587\u82f1\u6587 + \u4e2d\u6587\u8bf4\u660e\u53cc\u8bed",
+          "passed": false,
+          "evidence": "\u6539\u540e\u6b63\u6587\u82f1\u6587,\u8bca\u65ad\u90e8\u5206\u4e2d\u6587,\u4f46 RP \u6b63\u6587\u672c\u8eab\u65e0\u4e2d\u6587\u8bf4\u660e/\u6ce8\u91ca\u7a7f\u63d2(\u8bca\u65ad\u662f\u4e2d\u6587,RP \u662f\u7eaf\u82f1\u6587)\u3002\u672a\u8fbe'\u82f1\u6587\u6b63\u6587+\u4e2d\u6587\u8bf4\u660e\u53cc\u8bed'\u8981\u6c42\u3002\u5224 fail\u3002"
+        }
+      ],
+      "notes": [
+        "RQ \u975e\u7591\u95ee\u53e5;RP \u6b63\u6587\u65e0\u4e2d\u6587\u8bf4\u660e"
+      ]
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 390.0,
+        "stddev": 390.8644,
+        "min": 135.0,
+        "max": 840.0
+      },
+      "tokens": {
+        "mean": 0.0,
+        "stddev": 0.0,
+        "min": 0,
+        "max": 0
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 0.6,
+        "stddev": 0.2646,
+        "min": 0.3,
+        "max": 0.8
+      },
+      "time_seconds": {
+        "mean": 99.0,
+        "stddev": 61.9919,
+        "min": 42.0,
+        "max": 165.0
+      },
+      "tokens": {
+        "mean": 0.0,
+        "stddev": 0.0,
+        "min": 0,
+        "max": 0
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.40",
+      "time_seconds": "+291.0",
+      "tokens": "+0"
+    }
+  },
+  "notes": []
+}

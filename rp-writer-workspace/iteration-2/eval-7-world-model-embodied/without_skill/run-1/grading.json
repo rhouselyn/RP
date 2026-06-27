@@ -1,0 +1,23 @@
+{
+  "expectations": [
+    {"text": "产出含完整RP结构", "passed": true, "evidence": "rp.md 含 Introduction/Background/3 Research Questions/Related Work/Proposed Approach(5小节)/4年Timeline/Expected Contributions/Fit with Group/参考文献。结构完整。"},
+    {"text": "RQ是2-3个疑问句聚焦world model for manipulation具体问题", "passed": true, "evidence": "抽查确认:RQ1(Architecture,Can a hybrid...outperform either paradigm alone)、RQ2(Sim-to-real transferability,How can a world model...be adapted)、RQ3(Long-horizon reasoning,Can the proposed world model support long-horizon)。3 个疑问句,聚焦具体问题。baseline 在 RQ 上做得不错。"},
+    {"text": "讨论generative vs latent权衡有justification", "passed": true, "evidence": "subagent 报告:主张 hybrid latent-generative,以 latent 动力学(DreamerV3 式 RSSM)作骨干+diffusion 生成头提供高保真,通过一致性耦合目标互相监督。给 justification。"},
+    {"text": "Methodology含仿真器/数据集/baseline/指标/消融", "passed": true, "evidence": "subagent 报告:仿真 benchmark MetaWorld/RLBench/contact-rich 套件;baseline DreamerV3/TD-MPC/V-JEPA 式/diffusion-only;真机 Franka+腕部 RGB-D。要素齐全(消融未明确但方法在)。"},
+    {"text": "含sim-to-real策略或真机安全协议", "passed": true, "evidence": "subagent 报告:提出 transfer the world model itself,三条互补机制——latent 空间域随机化、小样本真实数据 latent 微调、残差动力学校正。sim-to-real 策略在。"},
+    {"text": "算力+可复现", "passed": false, "evidence": "subagent 报告未提及算力预算、open weights、model version、seed、开源计划。判 fail。"},
+    {"text": "回答so what", "passed": true, "evidence": "subagent 报告:核心假设 transfer the world model itself 而非仅 policy,有研究取向与贡献说明。勉强 pass。"},
+    {"text": "风险含方向被抢发+sim-to-real gap+真机安全", "passed": false, "evidence": "subagent 报告未提及'方向被抢发''真机安全'风险表。sim-to-real gap 作为研究问题存在但非风险预案形式。判 fail。"},
+    {"text": "双语", "passed": false, "evidence": "subagent 报告未提及中文说明;产出为纯英文。判 fail。"},
+    {"text": "引用真实或[需核实]", "passed": false, "evidence": "subagent 报告未提引用处理,无法证实真实性,未用 [需核实] 占位。判 fail(保守)。"},
+    {"text": "描述研究方向而非端到端方案", "passed": false, "evidence": "subagent 报告:Proposed Approach 5 小节含 hybrid 架构、transfer 三机制——虽 RQ 是研究方向式,但 Approach 把方案写死(hybrid latent-generative + 三机制)。介于之间,判 fail(方案描述偏端到端)。"}
+  ],
+  "summary": {"passed": 6, "failed": 5, "total": 11, "pass_rate": 0.545},
+  "timing": {"executor_duration_seconds": 95.0, "total_duration_seconds": 95.0},
+  "claims": [
+    {"claim": "RQ 为疑问句", "type": "factual", "verified": true, "evidence": "抽查确认 RQ1/2/3 均疑问句。baseline 在 RQ 上达标。"},
+    {"claim": "hybrid 架构有 justification", "type": "quality", "verified": true, "evidence": "subagent 报告给一致性耦合目标。"}
+  ],
+  "user_notes_summary": {"uncertainties": [], "needs_review": ["无双语、无算力/可复现、无风险表、引用未标[需核实]、方案偏端到端"], "workarounds": []},
+  "eval_feedback": {"suggestions": [], "overall": "baseline 6/11。世界模型方向 baseline 在 RQ 疑问句与范式权衡上做得好(说明 GLM-5.2 本身能力强),但缺双语/算力可复现/风险表/引用诚信。skill 仍有明确增益。"}
+}

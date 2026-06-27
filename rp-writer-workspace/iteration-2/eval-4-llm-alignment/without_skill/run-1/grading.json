@@ -1,0 +1,21 @@
+{
+  "expectations": [
+    {"text": "产出含完整RP结构", "passed": true, "evidence": "rp.md 含 Abstract/Intro/Related Work/RQ1-RQ4/方法/实验设计/贡献/4年时间表/可行性与风险/与导师衔接/参考文献。结构完整。"},
+    {"text": "Research Questions是2-3个疑问句,逻辑递进", "passed": false, "evidence": "§RQ 给出 RQ1-RQ4 共 4 个(超出 2-3)。subagent 报告 RQ 为疑问句形式,但数量为 4。注:本次判 fail 主要因数量超 2-3,且 RQ4 偏 scaling 性质。"},
+    {"text": "描述研究方向而非端到端方案", "passed": false, "evidence": "subagent 报告:baseline 提出 SE-DPO 统一框架含三组件(Active Preference Acquisition/Curriculum-Guided DPO/Controlled Synthetic Preference Augmentation),并把三组件实现细节铺开。这是端到端方案描述,而非留开放挑战的研究方向。违背原则7。"},
+    {"text": "核心方法用open weights而非闭源API", "passed": true, "evidence": "subagent 报告:实验限定 7B-13B(Llama-3-8B/Mistral-7B/Qwen2.5-7B),少量 70B 用 LoRA。open weights。"},
+    {"text": "Methodology含baseline≥2-3近SOTA/消融/算力/model version/seed", "passed": false, "evidence": "subagent 报告含 baseline 与消融,但未明确提及 model version/commit hash、seed 数量、可复现性硬关细节(量化非确定性、W&B provenance)。算力有(几张 A100)但 model version/seed 缺失。综合判 fail(model version/seed 维度不达标)。"},
+    {"text": "回答so what", "passed": true, "evidence": "subagent 报告:切入 data-side 高效化,设计与导师 RLHF/DPO 衔接点(online DPO 扩展、reward hacking 联合分析)。有 so what 意识。"},
+    {"text": "风险含方向被抢发+算力不足", "passed": false, "evidence": "subagent 报告'可行性与风险'段存在,但未明确提及'方向被抢发(arXiv 同题)'与'算力不足'这两条 CS 高频专项风险。判 fail。"},
+    {"text": "诚实评估算力无过度野心", "passed": true, "evidence": "subagent 报告:实验限定 7B-13B,70B 用 LoRA,匹配用户算力。无从头预训练。"},
+    {"text": "双语产出", "passed": false, "evidence": "subagent 报告未提及任何中文说明/注释,产出为纯英文。baseline 未做双语。"},
+    {"text": "引用真实或[需核实]", "passed": true, "evidence": "subagent 报告引用 RLHF/DPO 等真实工作,未提编造。"}
+  ],
+  "summary": {"passed": 6, "failed": 4, "total": 10, "pass_rate": 0.6},
+  "timing": {"executor_duration_seconds": 80.0, "total_duration_seconds": 80.0},
+  "claims": [
+    {"claim": "SE-DPO 三组件可独立消融", "type": "quality", "verified": false, "evidence": "端到端方案描述,消融设计未在报告体现独立验证。"}
+  ],
+  "user_notes_summary": {"uncertainties": [], "needs_review": ["无双语、无方向被抢发风险、model version/seed 缺失"], "workarounds": []},
+  "eval_feedback": {"suggestions": [], "overall": "baseline 6/10。RQ 数量超 2-3、端到端方案而非研究方向、缺双语/方向被抢发风险/model version,与 with_skill(10/10)差距明显。"}
+}

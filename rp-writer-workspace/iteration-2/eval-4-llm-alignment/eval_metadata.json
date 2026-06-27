@@ -1,0 +1,1 @@
+{"eval_id": 4, "eval_name": "llm-alignment", "direction": "LLM", "prompt": "我硕士做NLP,想申港校PhD...套磁了一个做LLM对齐的导师,他最近发RLHF和DPO相关的工作...让LLM对齐更高效...实验室算力一般,有几张A100。完整RP,英文正文,3000词左右。", "assertions": ["完整RP结构","RQ是2-3个疑问句且递进","描述研究方向而非端到端方案","核心方法用open weights而非闭源API","Methodology含baseline≥2-3近SOTA/消融/算力/model version/seed","回答so what","风险含方向被抢发+算力不足","诚实评估算力无过度野心","双语产出","引用真实或[需核实]"]}
