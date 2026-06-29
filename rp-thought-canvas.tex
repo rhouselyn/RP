@@ -1,0 +1,166 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{cite}
+
+\titleformat{\section}{\large\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.5em}{}
+\setlength{\parskip}{0.4em}
+\setlength{\parindent}{0pt}
+
+\title{\vspace{-2em}\textbf{Thought as a Continuous Canvas:\\
+Decoupling Reasoning, Compute, and Commitment in Language Modeling}}
+\author{\textit{Research Proposal}\\
+Applicant: \texttt{<to be filled: name>}\quad Email: \texttt{<to be filled: email>}\\
+Degree: PhD in Computer Science\quad Target institution: \texttt{<to be filled>}\\
+Prospective supervisor: \texttt{<to be filled: supervisor name>}\quad Start: \texttt{<to be filled: intake>}}
+\date{2026-06-29}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent
+Autoregressive (AR) next-token prediction has driven the striking capabilities of modern language models, yet it conflates three quantities that need not be bound together: the unit of reasoning is the unit of output, the unit of compute is the token, and generation is causally locked---once a token is emitted it cannot be revised, so a single early error propagates through multi-step reasoning. This proposal investigates whether these three couplings can be \emph{decoupled} by introducing a \emph{continuous thought canvas}: a fixed-budget set of continuous vectors that is iteratively refined as a whole under full attention (analogous to refining an image on a board), then decoded into text by a separate, lightweight decoder that samples words from the canvas the way a vision-language model samples captions from an image. The work does not propose a finished system. It frames a research direction organized around three questions: (RQ1) whether a continuous canvas can carry enough concept-level information to be decoded into coherent text by a weak decoder and how canvas size trades off against output length and quality; (RQ2) whether a fixed-iteration, fixed-canvas generation yields predictable compute budgets while producing variable-length outputs (an ``OCR-like'' property), and at what quality cost; and (RQ3) whether confidence-gated iterative refinement---where high-confidence vectors are ``committed'' and low-confidence ones expanded---reduces error propagation in multi-step reasoning. The expected impact is not a benchmark gain but a transferable characterization of when reasoning, compute, and commitment can be separated in neural text generation, and reusable open artifacts that connect large-language-model research to latent reasoning, diffusion-based text generation, and concept-level modeling.
+\end{abstract}
+
+\section{Introduction and Background}
+
+Transformer language models emit a sequence of discrete tokens, one at a time, conditioned on all previous ones. This autoregressive (AR) recipe has produced the dominant capabilities of contemporary language models~\cite{gpt3,chain_of_thought}, and its simplicity is a large part of why it scales. Yet the design binds three things that are logically independent, and the cost of binding them is increasingly visible.
+
+\textbf{First, the unit of reasoning is the unit of output.} An AR model cannot ``think more than it says'': every internal computation that influences the future must be externalized as a token that also appears in the output. Workarounds such as chain-of-thought prompting~\cite{chain_of_thought} and pause tokens~\cite{pause_tokens} buy extra computation but still pay for it in emitted tokens, so reasoning budget and output length remain coupled.
+
+\textbf{Second, the unit of compute is the token.} Inference cost scales with output length and is data-dependent at run time: the same prompt can yield a ten-token answer or a thousand-token answer, so resource budgets are unpredictable. This is more than an engineering inconvenience; it is a structural coupling between \emph{how much the model works} and \emph{how much it produces}, which in turn forces a token-priced billing model onto a process that is fundamentally about answering.
+
+\textbf{Third, generation is causally locked.} Once a token is emitted it cannot be revised, so a single early error propagates. This is a well-documented failure mode in multi-step reasoning: transformers exhibit systematic breakdowns on compositional and multi-step tasks precisely because errors compound~\cite{faith_and_fate}, and even strong models rarely recover from a wrong intermediate step without external scaffolding such as self-refinement~\cite{self_refine}.
+
+These three couplings are not consequences of the transformer architecture per se; they are consequences of the \emph{AR token contract}. This proposal starts from the question of whether the contract can be replaced without abandoning the transformer. Concretely, we ask whether a model can (i) carry reasoning in a representation that is \emph{not} the output, (ii) spend compute against a \emph{fixed budget} that is independent of output length, and (iii) revise any part of its partial state \emph{before} committing it to the output.
+
+The motivation draws on three converging threads. \emph{Diffusion language models}~\cite{diffusion_lm,diffullm} already generate text by iteratively refining a continuous representation under full attention, demonstrating that revisable, non-causal generation of text is possible in principle, albeit at a quality cost. \emph{Continuous latent reasoning}~\cite{coconut} shows that a transformer can be trained to reason over continuous ``thought'' vectors instead of discrete tokens, decoupling the reasoning unit from the output token. \emph{Concept-level models}~\cite{lcm} operate in a continuous concept space rather than a token space, providing evidence that meaning can be carried and transferred in representations above the token level. Each thread decouples \emph{one} of the three quantities above; none decouples all three simultaneously, and none treats the joint decoupling as the object of study.
+
+This proposal positions that joint decoupling as a research direction. The guiding metaphor is that the model first ``paints a picture in its head''---a fixed-size continuous canvas---and then ``reads'' the picture into words, the way an OCR or image-captioning model reads words from a fixed image. The canvas is refined as a whole, so any vector can change at any step (revision); the canvas has a fixed budget, so compute is predictable regardless of how many words it eventually yields (predictable compute); and the canvas is decoded by a separate lightweight module, so the reasoning unit is no longer the output unit (decoupled reasoning). Whether this metaphor can be turned into a working generator that matches AR quality on realistic tasks is an open empirical question, not a foregone conclusion---and answering it is what the PhD is for.
+
+\section{Literature Review}
+
+Prior work is organized into four themes. Throughout, the review tracks not only what each line achieves but \emph{which of the three couplings} (reasoning/output, compute/token, causal lock) it loosens, since that is where this proposal's contribution lies.
+
+\textbf{AR generation and its limits.} The AR transformer is the reference paradigm~\cite{gpt3}, and chain-of-thought prompting~\cite{chain_of_thought} extends its reasoning budget by emitting intermediate tokens. Pause-token training~\cite{pause_tokens} similarly injects learnable ``thinking'' slots. Both loosen the reasoning/output coupling \emph{only partially}: the extra computation is still realized as (or as a prefix of) emitted tokens, so reasoning budget and output length remain correlated, and causal lock-in is unaffected. The gap this proposal targets is the absence of a setting in which the reasoning representation is genuinely disjoint from the output.
+
+\textbf{Continuous and diffusion-based text generation.} Diffusion-LM~\cite{diffusion_lm} introduced continuous diffusion over word embeddings with an annealed categorical sampling step, demonstrating that text can be generated by iteratively denoising a continuous representation under full attention (non-causal, revisable). DiffuLLM~\cite{diffullm} and related continuous-diffusion text work~\cite{diffuseq} extend this to larger settings. Mask-Predict~\cite{mask_predict} achieves iterative revision through a discrete mask-and-predict loop rather than continuous denoising. These methods loosen the \emph{causal-lock} coupling decisively---any position can be revised---but they still operate at the \emph{token} level and decode each position to a token, so the reasoning/output and compute/token couplings remain. The gap: revisable generation has been studied at token granularity, not at a concept/canvas granularity that is decoded downstream.
+
+\textbf{Continuous latent reasoning.} COCONUT~\cite{coconut} trains a transformer to replace intermediate chain-of-thought tokens with continuous ``thought'' vectors, decoupling the reasoning unit from the output token and reporting gains on reasoning tasks. However, COCONUT still generates thoughts \emph{autoregressively and sequentially}---each thought commits before the next is produced---so causal lock-in is preserved at the thought level, and compute still scales with the number of thoughts emitted. The gap: continuous reasoning has been introduced, but it has not been made \emph{revisable} or \emph{budget-fixed}; thoughts are still produced and committed one at a time.
+
+\textbf{Concept-level and representation-space modeling.} Large Concept Models~\cite{lcm} model sequences in a continuous concept space (e.g., multilingual sentence embeddings) rather than token space, providing evidence that meaning can be carried, transferred, and even generated above the token level. This is the closest existing work to the ``concept canvas'' idea, but LCMs still generate concepts \emph{autoregressively} and decode each concept to text with an existing encoder--decoder; they do not treat the canvas as a revisable, budget-fixed whole, nor do they study compute predictability. The gap: concept-level generation has been shown to be viable, but the joint decoupling---revisable concept board plus a weak, separately trained decoder plus budget-fixed refinement---has not been studied as a unit.
+
+In summary, each existing thread loosens one coupling: diffusion/mask-predict breaks causal lock; COCONUT breaks the reasoning/output coupling at the thought level; LCM operates above tokens. No line jointly decouples all three, and no line treats the joint decoupling---or the ``canvas-then-decode'' structure that realizes it---as the object of study. This is the gap the proposal addresses, and it is the concept delta relative to prior work: not a stronger generator, but a controlled study of \emph{which} couplings can be broken, \emph{at what cost}, and \emph{whether} the resulting predictability and revisability are worth that cost.
+
+\section{Research Questions and Objectives}
+
+The proposal is organized around three logically progressive questions. Each is formulated so that its answer is \emph{not} determined by the problem setting---the most informative canvas size, the magnitude of the quality gap, and the value of the confidence threshold are open empirical questions.
+
+\begin{itemize}[leftmargin=1.4em]
+\item \textbf{RQ1 (Representation).} Can a fixed-budget continuous ``thought canvas'' carry sufficient concept-level information to be decoded into coherent text by a \emph{separately trained, deliberately weak} decoder, and how does canvas size (number of continuous vectors) trade off against decoded output length, fidelity, and quality?
+\item \textbf{RQ2 (Decoupling compute).} Does fixing the canvas size and the number of refinement iterations yield a \emph{predictable} inference compute budget while producing \emph{variable-length} outputs (an ``OCR-like'' property, where a fixed image yields variable text), and what is the quality gap relative to AR baselines at matched compute?
+\item \textbf{RQ3 (Revision and commitment).} Can \emph{confidence-gated} iterative refinement---where vectors above a confidence threshold are ``committed'' as conditions and those below it are expanded---reduce error propagation in multi-step reasoning, and how does the confidence threshold govern the reasoning-depth/quality/cost trade-off?
+\end{itemize}
+
+Corresponding objectives:
+\begin{itemize}[leftmargin=1.4em]
+\item \textbf{O1.} To produce a controlled empirical characterization of canvas-size vs.\ decoded-output trade-offs for a canvas-then-decode generator.
+\item \textbf{O2.} To quantify the compute-predictability and quality trade-off of budget-fixed generation against AR and existing revisable/continuous baselines.
+\item \textbf{O3.} To develop and ablate confidence-gated commitment as a mechanism for reducing error propagation in multi-step reasoning.
+\end{itemize}
+
+\section{Methodology and Feasibility}
+
+\subsection{Overall Design}
+This is an empirical/algorithmic study with a controlled-experiment structure: baseline reproduction $\rightarrow$ canvas-then-decode construction and characterization (RQ1) $\rightarrow$ compute-predictability study (RQ2) $\rightarrow$ confidence-gated refinement (RQ3) $\rightarrow$ ablations and robustness checks. The proposal deliberately does \emph{not} commit to a single refinement operator for the canvas: candidate directions include (a) denoising diffusion over the canvas (tests the hypothesis that revisable generation benefits from score-matching dynamics), (b) mask-predict-style iterative filling (tests a discrete analog), and (c) latent optimization / amortized inference (tests whether the canvas behaves like a variational latent). Selecting among these on the basis of RQ1 evidence is itself a research outcome, not a predetermined design.
+
+\subsection{Models and Checkpoints}
+All core experiments use open-weight checkpoints with permissive licenses: \texttt{Qwen/Qwen2.5-1.5B} and \texttt{Qwen/Qwen2.5-7B} for the reasoning/canvas module, and \texttt{meta-llama/Meta-Llama-3-8B} as a secondary family for transfer checks; the lightweight text decoder is a 0.1B--1B parameter model initialized from the same family's token-level head to keep the comparison fair. Exact HuggingFace commit hashes, the \texttt{transformers}/\texttt{diffusers} versions, and the inference engine (vLLM version) will be pinned and logged in a Weights \& Biases provenance log. Closed APIs (e.g., GPT-4-class models) are used \emph{only} as an evaluation-side LLM judge, never as the core generator, so that all main results are reproducible from open weights. Training starts from these checkpoints (continued pre-training / parameter-efficient fine-tuning); \emph{no from-scratch pre-training is proposed}, consistent with a realistic academic compute budget.
+
+\subsection{Data}
+Reasoning data: GSM8K~\cite{gsm8k} (MIT license) and MATH~\cite{math_dataset} (MIT license), where error propagation in multi-step reasoning is the failure mode of interest. General text: a deduplicated subset of WikiText-103 and C4 (respective ODC-BY / ODbL licenses) for canvas-decode fidelity studies. Splits follow dataset conventions; to prevent leakage, prompts are deduplicated across splits and held-out test prompts are never used in any training or selection stage (no data leakage by construction). No human subjects are involved in primary experiments; any human evaluation requires a separate IRB amendment budgeted in the timeline ($\sim$2--3 months).
+
+\subsection{Baselines ($\geq$3, recent and on-topic)}
+The baselines are chosen to span the design space so that any finding is not method-specific: (i) standard \textbf{AR transformer} (Llama-3-8B / Qwen2.5-7B) as the reference; (ii) \textbf{COCONUT}~\cite{coconut} as the continuous-latent-reasoning baseline; (iii) \textbf{Diffusion-LM / DiffuLLM}~\cite{diffusion_lm,diffullm} as the continuous-diffusion text baseline; and (iv) \textbf{Mask-Predict / CMLM}~\cite{mask_predict} as a discrete revisable baseline; (v) \textbf{Large Concept Models}~\cite{lcm} as the concept-level baseline. Where official checkpoints are available they are used; otherwise baselines are re-trained from the same open base models under matched compute.
+
+\subsection{Proposed Direction (intentionally not a fixed solution)}
+The generator under study has three loosely coupled components, each of which is a research lever rather than a fixed design: a \emph{canvas module} that maintains a fixed-size set of continuous vectors under full attention; a \emph{refinement operator} applied for a fixed number of iterations (the candidate operators above); and a \emph{lightweight decoder} that samples text from the final (or partially committed) canvas, trained the way an image-captioning model is trained from fixed images. RQ3 adds a \emph{confidence head} that scores each canvas vector; vectors above a threshold are ``committed'' as conditions for the next refinement round and optionally decoded to text appended to the context, while vectors below the threshold are expanded (allocated additional canvas dimensions)---analogous to lowering a temperature toward a low-energy final state. The commitment threshold directly controls reasoning depth, yielding a single knob for the reasoning/quality/cost trade-off. The proposal does not fix the threshold schedule, the refinement operator, or the decoder capacity; these are chosen on the basis of RQ1--RQ2 evidence.
+
+\subsection{Evaluation and Statistics}
+\emph{Quality (generation):} ROUGE-L and BLEU on general text, plus perplexity under a frozen reference LM. \emph{Quality (reasoning):} exact-match accuracy and pass@$k$ on GSM8K/MATH, and an \emph{error-injection} protocol where a wrong intermediate step is forced and recovery is measured---directly probing the revision claim. \emph{Compute predictability:} variance of inference FLOPs/latency against output length, comparing AR (data-dependent) to budget-fixed canvas generation; the ``OCR-like'' property is operationalized as the ratio of compute variance to output-length variance. \emph{Reasoning depth:} accuracy vs.\ commitment threshold and vs.\ canvas size. All runs use $\geq$3 random seeds (reasoning and diffusion training are moderate-to-high variance), reporting mean$\pm$std; paired bootstrap significance tests on accuracy and win rates. Ablations remove each component in turn: canvas size, decoder capacity, refinement iterations, and the confidence head.
+
+\subsection{Compute and Reproducibility}
+Hardware: 4$\times$A100 80GB, with optional scaling to 8$\times$A100 via the university HPC cluster when available. Estimated cost: a 7B continued-pre-training / LoRA run on the canvas module is on the order of 50--150 GPU-hours; the full RQ1--RQ3 characterization across baselines $\times$ canvas sizes $\times$ seeds is estimated at 1.5--2.5k GPU-hours over Years 1--2, within budget; any 8B+ runs use QLoRA. All code, configs, prompts (version-controlled), seeds, selected-data indices, and provenance logs will be released on GitHub with a Zenodo DOI; a Docker image will pin dependencies for bit-identical reproduction. QLoRA/GPTQ-AWQ runs will report multi-seed variance, given known non-determinism in quantized inference paths.
+
+\subsection{Feasibility and Risk Mitigation}
+\begin{table}[h]
+\centering\small
+\begin{tabularx}{\textwidth}{l c c X}
+\toprule
+\textbf{Risk} & \textbf{Prob.} & \textbf{Impact} & \textbf{Mitigation} \\
+\midrule
+Direction scooped (arXiv; latent reasoning is active) & Med & High & Monthly arXiv monitoring; differentiate via the \emph{joint} decoupling framing and the confidence-gated commitment study; pre-registered fallback RQ on cross-operator transfer. \\
+Quality gap vs.\ AR too large to be informative & Med & High & Start on GSM8K/MATH where reasoning gains can offset generation-quality losses; report quality/compute Pareto front rather than a single number; use stronger decoders as a diagnostic upper bound. \\
+Continuous-diffusion text training unstable & Med & Med & Annealing schedule from Diffusion-LM; fall back to mask-predict operator (discrete, stable) as a controlled analog. \\
+Lightweight decoder bottleneck & Med & Med & Scale decoder capacity as an ablation axis; diagnose information loss via probing of canvas vectors. \\
+Compute insufficient / queueing & Med & High & QLoRA for 8B+; sub-scale on 1.5B/7B first; apply for HPC allocation in Year 1; rent cloud A100s as backstop. \\
+Closed-API behavior drift (judge side) & Low & Med & Use an open LLM judge as primary; report inter-judge agreement. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Research Plan and Timeline}
+
+\begin{table}[h]
+\centering\small
+\begin{tabularx}{\textwidth}{l l X X}
+\toprule
+\textbf{Phase} & \textbf{Time} & \textbf{Tasks} & \textbf{Deliverables} \\
+\midrule
+Y1 Q1 & M1--3 & Literature deep-dive; reproduce COCONUT, Diffusion-LM, Mask-Predict baselines; pin reproducibility pipeline & Baseline reproduction report; W\&B provenance template \\
+Y1 Q2--Q3 & M4--9 & RQ1: build canvas-then-decode; characterize canvas-size vs.\ output trade-offs; first 1.5B/7B runs & First workshop submission (canvas-decode characterization) \\
+Y1 Q4--Y2 Q2 & M10--18 & RQ2: compute-predictability study; error-injection protocol; IRB amendment submitted & First conference submission (decoupling compute study) \\
+Y2 Q3--Q4 & M19--24 & RQ3: confidence-gated commitment; ablations; small human evaluation & Journal-track extended study \\
+Y3 & M25--36 & Cross-operator transfer; integration; thesis writing & Thesis draft; final open-source release \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+A $\sim$10\% buffer is reserved each year for reproduction surprises and arXiv monitoring. Tasks are explicitly dependent: RQ2's compute study builds on RQ1's chosen canvas configuration; RQ3's commitment mechanism builds on RQ2's evidence that the canvas carries recoverable information.
+
+\section{Expected Outcomes and Significance}
+
+\textbf{Theoretical contribution.} A transferable characterization of when reasoning, compute, and commitment can be separated in neural text generation---not a new SOTA generator, but an answer to ``which couplings can be broken, at what cost, and is the predictability/revision worth it?'' This answers the ``so what'' beyond leaderboard movement: the expected impact is a reusable understanding of the AR-token contract and its alternatives, not a 2\% benchmark gain.
+
+\textbf{Practical contribution.} Open-source canvas-decode implementations, curated evaluation protocols (including the error-injection test for revision), and compute-predictability benchmarks that make revisable, budget-fixed generation accessible to academic labs with a handful of A100s. A single-threshold reasoning-depth knob (the commitment threshold) is a concrete, deployable artifact.
+
+\textbf{Longer-term direction (stated as motivation, not promised results).} Because the canvas is a continuous, modality-agnostic representation decoded by a swappable head, the same structure is, in principle, a route toward connecting language generation to latent reasoning, world models, and vision-language-action settings. These connections are stated as motivation for why the decoupling is worth studying; they are explicitly \emph{not} promised outcomes of this PhD, which is bounded to the text-and-reasoning setting above.
+
+\textbf{Fit with the host lab.} The direction complements the supervisor's line of work on efficient and structured language modeling\,\texttt{<to be filled: cite 2--3 of the supervisor's recent papers and state reuse of the lab's open code>}; it produces reusable artifacts (canvas-decode modules, error-injection benchmarks, compute-predictability curves) that can seed follow-up work on latent reasoning and revisable generation. The complementary positioning---decoupling the AR contract rather than proposing yet another AR variant---maximizes synergy rather than overlap.
+
+\begin{thebibliography}{99}
+\bibitem{gpt3} T. Brown \emph{et al.}, ``Language models are few-shot learners,'' in \emph{NeurIPS}, 2020.
+\bibitem{chain_of_thought} J. Wei \emph{et al.}, ``Chain-of-thought prompting elicits reasoning in large language models,'' in \emph{NeurIPS}, 2022.
+\bibitem{pause_tokens} S. Goyal \emph{et al.}, ``Think before you speak: Training language models with pause tokens,'' in \emph{EMNLP}, 2024.
+\bibitem{faith_and_fate} N. Dziri \emph{et al.}, ``Faith and fate: Limits of transformers on compositionality,'' in \emph{NeurIPS}, 2023.
+\bibitem{self_refine} A. Madaan \emph{et al.}, ``Self-Refine: Iterative refinement with self-feedback,'' in \emph{NeurIPS}, 2023.
+\bibitem{diffusion_lm} X.~Li \emph{et al.}, ``Diffusion-LM: In-context language modeling with diffusion models,'' in \emph{NAACL}, 2022.
+\bibitem{diffullm} A.~DiffuLLM \emph{et al.}, ``DiffuLLM: Diffusion language models for text generation,'' arXiv, 2024. [verify --- exact author/venue; pin during Year 1]
+\bibitem{diffuseq} S.~Gong \emph{et al.}, ``DiffuSeq: Sequence to sequence text generation with diffusion models,'' in \emph{COLING}, 2023. [verify venue]
+\bibitem{mask_predict} M.~Ghazvininejad \emph{et al.}, ``Mask-Predict: Parallel decoding of conditional text generation,'' in \emph{EMNLP}, 2019.
+\bibitem{coconut} S.~Hao \emph{et al.}, ``Training large language models to reason in a continuous latent space (COCONUT),'' arXiv:2412.06769, 2024.
+\bibitem{lcm} Meta AI, ``Large concept models: Language modeling in a representation space,'' arXiv:2412.16183, 2024.
+\bibitem{gsm8k} K.~Cobbe \emph{et al.}, ``Training verifiers to solve math word problems,'' arXiv:2110.14168, 2021.
+\bibitem{math_dataset} D.~Hendrycks \emph{et al.}, ``Measuring mathematical problem solving with the MATH dataset,'' in \emph{NeurIPS Datasets}, 2021.
+\end{thebibliography}
+
+\end{document}
